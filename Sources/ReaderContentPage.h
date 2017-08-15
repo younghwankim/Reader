@@ -24,10 +24,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AnnotationStore.h"
 
 @interface ReaderContentPage : UIView
 
-- (instancetype)initWithURL:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase;
+- (instancetype)initWithURL:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase annotations:(AnnotationStore *)annotations;
 
 - (id)processSingleTap:(UITapGestureRecognizer *)recognizer;
 

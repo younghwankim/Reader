@@ -26,6 +26,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ReaderThumbView.h"
+#import "AnnotationStore.h"
 
 @class ReaderContentView;
 @class ReaderContentPage;
@@ -43,7 +44,7 @@
 
 @property (nonatomic, weak, readwrite) id <ReaderContentViewDelegate> message;
 
-- (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase;
+- (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase  annotations:(AnnotationStore*)annotations;
 
 - (void)showPageThumb:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase guid:(NSString *)guid;
 
@@ -52,7 +53,7 @@
 - (void)zoomIncrement:(UITapGestureRecognizer *)recognizer;
 - (void)zoomDecrement:(UITapGestureRecognizer *)recognizer;
 - (void)zoomResetAnimated:(BOOL)animated;
-
+- (UIView*)pageView ;
 @end
 
 #pragma mark -

@@ -24,6 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AnnotationStore.h"
 
 @interface ReaderDocument : NSObject <NSObject, NSCoding>
 
@@ -52,4 +53,6 @@
 
 - (void)updateDocumentProperties;
 
++ (NSURL*) urlForAnnotatedDocument:(ReaderDocument *)document;
+- (AnnotationStore*) annotations;
 @end

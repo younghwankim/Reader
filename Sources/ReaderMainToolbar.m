@@ -53,6 +53,8 @@
 #define TITLE_FONT_SIZE 19.0f
 #define TITLE_HEIGHT 28.0f
 
+#define ANNOTATE_BUTTON_WIDTH 40.0f
+
 #pragma mark - Properties
 
 @synthesize delegate;
@@ -154,54 +156,70 @@
 		markImageY = [UIImage imageNamed:@"Reader-Mark-Y"]; // Y image
 
 #endif // end of READER_BOOKMARKS Option
+//
+//		if (document.canEmail == YES) // Document email enabled
+//		{
+//			if ([MFMailComposeViewController canSendMail] == YES) // Can email
+//			{
+//				unsigned long long fileSize = [document.fileSize unsignedLongLongValue];
+//
+//				if (fileSize < 15728640ull) // Check attachment size limit (15MB)
+//				{
+//					rightButtonX -= (iconButtonWidth + buttonSpacing); // Next position
+//
+//					UIButton *emailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//					emailButton.frame = CGRectMake(rightButtonX, BUTTON_Y, iconButtonWidth, BUTTON_HEIGHT);
+//					[emailButton setImage:[UIImage imageNamed:@"Reader-Email"] forState:UIControlStateNormal];
+//					[emailButton addTarget:self action:@selector(emailButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+//					[emailButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
+//					[emailButton setBackgroundImage:buttonN forState:UIControlStateNormal];
+//					emailButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+//					//emailButton.backgroundColor = [UIColor grayColor];
+//					emailButton.exclusiveTouch = YES;
+//
+//					[self addSubview:emailButton]; titleWidth -= (iconButtonWidth + buttonSpacing);
+//				}
+//			}
+//		}
+//
+//		if ((document.canPrint == YES) && (document.password == nil)) // Document print enabled
+//		{
+//			Class printInteractionController = NSClassFromString(@"UIPrintInteractionController");
+//
+//			if ((printInteractionController != nil) && [printInteractionController isPrintingAvailable])
+//			{
+//				rightButtonX -= (iconButtonWidth + buttonSpacing); // Next position
+//
+//				UIButton *printButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//				printButton.frame = CGRectMake(rightButtonX, BUTTON_Y, iconButtonWidth, BUTTON_HEIGHT);
+//				[printButton setImage:[UIImage imageNamed:@"Reader-Print"] forState:UIControlStateNormal];
+//				[printButton addTarget:self action:@selector(printButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+//				[printButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
+//				[printButton setBackgroundImage:buttonN forState:UIControlStateNormal];
+//				printButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+//				//printButton.backgroundColor = [UIColor grayColor];
+//				printButton.exclusiveTouch = YES;
+//
+//				[self addSubview:printButton]; titleWidth -= (iconButtonWidth + buttonSpacing);
+//			}
+//		}
 
-		if (document.canEmail == YES) // Document email enabled
-		{
-			if ([MFMailComposeViewController canSendMail] == YES) // Can email
-			{
-				unsigned long long fileSize = [document.fileSize unsignedLongLongValue];
-
-				if (fileSize < 15728640ull) // Check attachment size limit (15MB)
-				{
-					rightButtonX -= (iconButtonWidth + buttonSpacing); // Next position
-
-					UIButton *emailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-					emailButton.frame = CGRectMake(rightButtonX, BUTTON_Y, iconButtonWidth, BUTTON_HEIGHT);
-					[emailButton setImage:[UIImage imageNamed:@"Reader-Email"] forState:UIControlStateNormal];
-					[emailButton addTarget:self action:@selector(emailButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-					[emailButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
-					[emailButton setBackgroundImage:buttonN forState:UIControlStateNormal];
-					emailButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-					//emailButton.backgroundColor = [UIColor grayColor];
-					emailButton.exclusiveTouch = YES;
-
-					[self addSubview:emailButton]; titleWidth -= (iconButtonWidth + buttonSpacing);
-				}
-			}
-		}
-
-		if ((document.canPrint == YES) && (document.password == nil)) // Document print enabled
-		{
-			Class printInteractionController = NSClassFromString(@"UIPrintInteractionController");
-
-			if ((printInteractionController != nil) && [printInteractionController isPrintingAvailable])
-			{
-				rightButtonX -= (iconButtonWidth + buttonSpacing); // Next position
-
-				UIButton *printButton = [UIButton buttonWithType:UIButtonTypeCustom];
-				printButton.frame = CGRectMake(rightButtonX, BUTTON_Y, iconButtonWidth, BUTTON_HEIGHT);
-				[printButton setImage:[UIImage imageNamed:@"Reader-Print"] forState:UIControlStateNormal];
-				[printButton addTarget:self action:@selector(printButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-				[printButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
-				[printButton setBackgroundImage:buttonN forState:UIControlStateNormal];
-				printButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-				//printButton.backgroundColor = [UIColor grayColor];
-				printButton.exclusiveTouch = YES;
-
-				[self addSubview:printButton]; titleWidth -= (iconButtonWidth + buttonSpacing);
-			}
-		}
-
+        rightButtonX -= (ANNOTATE_BUTTON_WIDTH + BUTTON_SPACE);
+        
+        UIButton *annotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        annotateButton.frame = CGRectMake(rightButtonX, BUTTON_Y, ANNOTATE_BUTTON_WIDTH, BUTTON_HEIGHT);
+        [annotateButton setImage:[UIImage imageNamed:@"Reader-Annotate"] forState:UIControlStateNormal];
+        [annotateButton addTarget:self action:@selector(annotateButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [annotateButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
+        [annotateButton setBackgroundImage:buttonN forState:UIControlStateNormal];
+        annotateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        annotateButton.exclusiveTouch = YES;
+        
+        [self addSubview:annotateButton]; titleWidth -= (ANNOTATE_BUTTON_WIDTH + BUTTON_SPACE);
+        
+        
+        
 		if (document.canExport == YES) // Document export enabled
 		{
 			rightButtonX -= (iconButtonWidth + buttonSpacing); // Next position
@@ -352,5 +370,11 @@
 {
 	[delegate tappedInToolbar:self markButton:button];
 }
+
+- (void)annotateButtonTapped:(UIButton *)button
+{
+    [delegate tappedInToolbar:self annotateButton:button];
+}
+
 
 @end

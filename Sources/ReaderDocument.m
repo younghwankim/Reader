@@ -57,6 +57,8 @@
 	NSString *_filePath;
 
 	NSURL *_fileURL;
+    
+    AnnotationStore *_annotations;
 }
 
 #pragma mark - Properties
@@ -288,7 +290,7 @@
 	if (thePDFDocRef != NULL) // Get the total number of pages in the document
 	{
 		NSInteger pageCount = CGPDFDocumentGetNumberOfPages(thePDFDocRef);
-
+        _annotations = [[AnnotationStore alloc] initWithPageCount:pageCount];
 		_pageCount = [NSNumber numberWithInteger:pageCount];
 
 		CGPDFDocumentRelease(thePDFDocRef); // Cleanup
@@ -350,5 +352,95 @@
 
 	return self;
 }
+
+
+
+#pragma mark Annotations code
+- (AnnotationStore*) annotations {
+    if (!_annotations) {
+        _annotations = [[AnnotationStore alloc] initWithPageCount:[self.pageCount intValue]];
+    }
+    return _annotations;
+}
+
++ (NSURL*) urlForAnnotatedDocument:(ReaderDocument *)document
+{
+    CGPDFDocumentRef doc = CGPDFDocumentCreateUsingUrl((__bridge CFURLRef)document.fileURL, document.password);
+    
+    NSString *tempPath = [NSTemporaryDirectory() stringByAppendingString:@"annotated.pdf"];
+    //CGRectZero means the default page size is 8.5x11
+    //We don't care about the default anyway, because we set each page to be a specific size
+    UIGraphicsBeginPDFContextToFile(tempPath, CGRectZero, nil);
+    
+    //Iterate over each page - 1-based indexing (obnoxious...)
+    int pages = [document.pageCount intValue];
+    for (int i = 1; i <= pages; i++) {
+        CGPDFPageRef page = CGPDFDocumentGetPage (doc, i); // grab page i of the PDF
+        CGRect bounds = [ReaderDocument boundsForPDFPage:page];
+        
+        //Create a new page
+        UIGraphicsBeginPDFPageWithInfo(bounds, nil);
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        // flip context so page is right way up
+        CGContextTranslateCTM(context, 0, bounds.size.height);
+        CGContextScaleCTM(context, 1.0, -1.0);
+        CGContextDrawPDFPage (context, page); // draw the page into graphics context
+        
+        //Annotations
+        NSArray *annotations = [document.annotations annotationsForPage:i];
+        if (annotations) {
+            NSLog(@"Writing %d annotations", [annotations count]);
+            //Flip back right-side up
+            CGContextScaleCTM(context, 1.0, -1.0);
+            CGContextTranslateCTM(context, 0, -bounds.size.height);
+            
+            for (Annotation *anno in annotations) {
+                [anno drawInContext:context];
+            }
+        }
+    }
+    
+    UIGraphicsEndPDFContext();
+    
+    CGPDFDocumentRelease (doc);
+    
+    return [NSURL fileURLWithPath:tempPath];
+}
+
+
++ (CGRect) boundsForPDFPage:(CGPDFPageRef) page{
+    CGRect cropBoxRect = CGPDFPageGetBoxRect(page, kCGPDFCropBox);
+    CGRect mediaBoxRect = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
+    CGRect effectiveRect = CGRectIntersection(cropBoxRect, mediaBoxRect);
+    
+    int pageAngle = CGPDFPageGetRotationAngle(page); // Angle
+    
+    float pageWidth, pageHeight, pageOffsetX, pageOffsetY;
+    switch (pageAngle) // Page rotation angle (in degrees)
+    {
+        default: // Default case
+        case 0: case 180: // 0 and 180 degrees
+        {
+            pageWidth = effectiveRect.size.width;
+            pageHeight = effectiveRect.size.height;
+            pageOffsetX = effectiveRect.origin.x;
+            pageOffsetY = effectiveRect.origin.y;
+            break;
+        }
+            
+        case 90: case 270: // 90 and 270 degrees
+        {
+            pageWidth = effectiveRect.size.height;
+            pageHeight = effectiveRect.size.width;
+            pageOffsetX = effectiveRect.origin.y;
+            pageOffsetY = effectiveRect.origin.x;
+            break;
+        }
+    }
+    
+    return CGRectMake(pageOffsetX, pageOffsetY, pageWidth, pageHeight);
+}
+
 
 @end

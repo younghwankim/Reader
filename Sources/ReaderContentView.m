@@ -36,6 +36,7 @@
 
 @implementation ReaderContentView
 {
+    
 	UIView *theContainerView;
 
 	UIUserInterfaceIdiom userInterfaceIdiom;
@@ -48,6 +49,8 @@
 	CGFloat tempMaximumZoom;
 
 	BOOL zoomBounced;
+    
+    AnnotationStore *_annotations;
 }
 
 #pragma mark - Constants
@@ -124,8 +127,10 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 	if (UIEdgeInsetsEqualToEdgeInsets(self.contentInset, insets) == false) self.contentInset = insets;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase
+- (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase annotations:(AnnotationStore *)annotations
 {
+    _annotations = annotations;
+    
 	if ((self = [super initWithFrame:frame]))
 	{
 		self.scrollsToTop = NO;
@@ -141,7 +146,7 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 
 		userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom; // User interface idiom
 
-		theContentPage = [[ReaderContentPage alloc] initWithURL:fileURL page:page password:phrase];
+		theContentPage = [[ReaderContentPage alloc] initWithURL:fileURL page:page password:phrase annotations:_annotations];
 
 		if (theContentPage != nil) // Must have a valid and initialized content page
 		{
@@ -373,6 +378,12 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesMoved:touches withEvent:event]; // Message superclass
+}
+
+
+#pragma mark Test methods
+- (UIView*)pageView {
+    return theContentPage;
 }
 
 @end

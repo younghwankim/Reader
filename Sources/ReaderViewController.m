@@ -32,10 +32,12 @@
 #import "ReaderThumbCache.h"
 #import "ReaderThumbQueue.h"
 
+#import "ReaderAnnotateToolbar.h"
+
 #import <MessageUI/MessageUI.h>
 
 @interface ReaderViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate,
-									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate>
+									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate>
 @end
 
 @implementation ReaderViewController
@@ -65,6 +67,8 @@
 	NSDate *lastHideTime;
 
 	BOOL ignoreDidScroll;
+    
+    ReaderAnnotateToolbar *annotateToolbar;
 }
 
 #pragma mark - Constants
@@ -133,7 +137,7 @@
 
 	NSURL *fileURL = document.fileURL; NSString *phrase = document.password; NSString *guid = document.guid; // Document properties
 
-	ReaderContentView *contentView = [[ReaderContentView alloc] initWithFrame:viewRect fileURL:fileURL page:page password:phrase]; // ReaderContentView
+	ReaderContentView *contentView = [[ReaderContentView alloc] initWithFrame:viewRect fileURL:fileURL page:page password:phrase  annotations:[document annotations]]; // ReaderContentView
 
 	contentView.message = self; [contentViews setObject:contentView forKey:[NSNumber numberWithInteger:page]]; [scrollView addSubview:contentView];
 
@@ -252,6 +256,11 @@
 		[mainToolbar setBookmarkState:[document.bookmarks containsIndex:page]];
 
 		[mainPagebar updatePagebar]; // Update page bar
+        
+        //Updating annotations
+        NSNumber *key = [NSNumber numberWithInteger:page]; // # key
+        ReaderContentView *newContentView = [contentViews objectForKey:key];
+        [self.annotationController moveToPage:(int)page contentView:newContentView];
 	}
 }
 
@@ -358,6 +367,20 @@
 	mainToolbar = [[ReaderMainToolbar alloc] initWithFrame:toolbarRect document:document]; // ReaderMainToolbar
 	mainToolbar.delegate = self; // ReaderMainToolbarDelegate
 	[self.view addSubview:mainToolbar];
+    
+    
+    annotateToolbar = [[ReaderAnnotateToolbar alloc] initWithFrame:toolbarRect]; // At top for annotating
+    
+    annotateToolbar.delegate = self;
+    //hidden by default
+    annotateToolbar.hidden = YES;
+    [self.view addSubview:annotateToolbar];
+    
+    
+    
+    
+    
+    
 
 	CGRect pagebarRect = self.view.bounds; pagebarRect.size.height = PAGEBAR_HEIGHT;
 	pagebarRect.origin.y = (self.view.bounds.size.height - pagebarRect.size.height);
@@ -381,6 +404,9 @@
 
 	[singleTapOne requireGestureRecognizerToFail:doubleTapOne]; // Single tap requires double tap to fail
 
+    //Annotation view controller
+    self.annotationController = [[AnnotationViewController alloc] initWithDocument:document];
+    
 	contentViews = [NSMutableDictionary new]; lastHideTime = [NSDate date];
 
 	minimumPage = 1; maximumPage = [document.pageCount integerValue];
@@ -441,7 +467,7 @@
 	NSLog(@"%s", __FUNCTION__);
 #endif
 
-	mainToolbar = nil; mainPagebar = nil;
+	mainToolbar = nil; annotateToolbar = nil; mainPagebar = nil;
 
 	theScrollView = nil; contentViews = nil; lastHideTime = nil;
 
@@ -845,6 +871,15 @@
 #endif // end of READER_BOOKMARKS Option
 }
 
+
+- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar annotateButton:(UIButton *)button
+{
+    [self setAnnotationMode:AnnotationViewControllerType_None];
+    [self startAnnotation];
+}
+
+
+
 #pragma mark - MFMailComposeViewControllerDelegate methods
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -898,5 +933,115 @@
 
 	if (userInterfaceIdiom == UIUserInterfaceIdiomPad) if (printInteraction != nil) [printInteraction dismissAnimated:NO];
 }
+
+
+#pragma mark ReaderAnnotateToolbarDelegate methods
+
+
+- (void) setAnnotationMode:(NSString*)mode {
+    [annotateToolbar setSignButtonState:NO];
+    [annotateToolbar setRedPenButtonState:NO];
+    [annotateToolbar setTextButtonState:NO];
+    
+    if ([mode isEqualToString:AnnotationViewControllerType_Sign]) {
+        [annotateToolbar setSignButtonState:YES];
+    } else if ([mode isEqualToString:AnnotationViewControllerType_RedPen]) {
+        [annotateToolbar setRedPenButtonState:YES];
+    } else if ([mode isEqualToString:AnnotationViewControllerType_Text]) {
+        [annotateToolbar setTextButtonState:YES];
+    }
+    
+    self.annotationController.annotationType = mode;
+    [self startAnnotation];
+}
+
+- (void)tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar signButton:(UIButton *)button
+{
+    if ([self.annotationController.annotationType isEqualToString:AnnotationViewControllerType_Sign]) {
+        [self setAnnotationMode:AnnotationViewControllerType_None];
+    } else {
+        [self setAnnotationMode:AnnotationViewControllerType_Sign];
+    }
+}
+
+- (void)tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar redPenButton:(UIButton *)button
+{
+    if ([self.annotationController.annotationType isEqualToString:AnnotationViewControllerType_RedPen]) {
+        [self setAnnotationMode:AnnotationViewControllerType_None];
+    } else {
+        [self setAnnotationMode:AnnotationViewControllerType_RedPen];
+    }
+}
+
+- (void)tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar textButton:(UIButton *)button
+{
+    if ([self.annotationController.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
+        [self setAnnotationMode:AnnotationViewControllerType_None];
+    } else {
+        [self setAnnotationMode:AnnotationViewControllerType_Text];
+    }
+}
+
+- (void) tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar cancelButton:(UIButton *)button {
+    [self cancelAnnotation];
+    }
+
+- (void) tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar doneButton:(UIButton *)button {
+    [self finishAnnotation];
+}
+
+- (void)tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar undoButton:(UIButton *)button {
+    [self.annotationController undo];
+}
+
+#pragma mark Annotation Flow
+
+- (void) startAnnotation {
+    [annotateToolbar showToolbar];
+    [mainToolbar hideToolbar];
+    
+    ReaderContentView *view = [contentViews objectForKey:document.pageNumber];
+    [self.annotationController moveToPage:[document.pageNumber intValue] contentView:view];
+    [self.view insertSubview:self.annotationController.view belowSubview:annotateToolbar];
+}
+
+- (void) cancelAnnotation {
+    [annotateToolbar hideToolbar];
+    [mainToolbar showToolbar];
+    
+    [self.annotationController clear];
+    [self.annotationController hide];
+}
+
+- (void) finishAnnotation {
+    [annotateToolbar hideToolbar];
+    [mainToolbar showToolbar];
+    
+    AnnotationStore *annotations = [self.annotationController annotations];
+    [document.annotations addAnnotations:annotations];
+    ReaderContentView *view = [contentViews objectForKey:document.pageNumber];
+    [[view pageView] setNeedsDisplay];
+    
+    [self.annotationController clear];
+    [self.annotationController hide];
+    
+}
+
+- (void)handleAnnotationModeNotification:(NSNotification *)notification
+{
+//    if ([notification.name isEqualToString:DocumentsSetAnnotationModeSignNotification]) {
+//        [self startAnnotation];
+//        [self setAnnotationMode:AnnotationViewControllerType_Sign];
+//    }
+//    if ([notification.name isEqualToString:DocumentsSetAnnotationModeRedPenNotification]) {
+//        [self startAnnotation];
+//        [self setAnnotationMode:AnnotationViewControllerType_RedPen];
+//    }
+//    if ([notification.name isEqualToString:DocumentsSetAnnotationModeOffNotification]) {
+//        [self cancelAnnotation];
+//        [self setAnnotationMode:AnnotationViewControllerType_None];
+//    }
+}
+
 
 @end

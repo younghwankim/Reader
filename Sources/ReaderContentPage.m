@@ -27,10 +27,13 @@
 #import "ReaderContentPage.h"
 #import "ReaderContentTile.h"
 #import "CGPDFDocument.h"
+#import "Annotation.h"
+
 
 @implementation ReaderContentPage
 {
 	NSMutableArray *_links;
+    NSArray *_annotations;
 
 	CGPDFDocumentRef _PDFDocRef;
 
@@ -420,7 +423,7 @@
 	return self;
 }
 
-- (instancetype)initWithURL:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase
+- (instancetype)initWithURL:(NSURL *)fileURL page:(NSInteger)page password:(NSString *)phrase annotations:(AnnotationStore *)annotations
 {
 	CGRect viewRect = CGRectZero; // View rect
 
@@ -496,8 +499,12 @@
 
 	ReaderContentPage *view = [self initWithFrame:viewRect];
 
-	if (view != nil) [self buildAnnotationLinksList];
+    if (view != nil) {
+        [self buildAnnotationLinksList];
+        NSLog(@"Rending Page %d", page);
+        _annotations = [annotations annotationsForPage:page];
 
+    }
 	return view;
 }
 
@@ -546,6 +553,17 @@
 
 	CGContextDrawPDFPage(context, _PDFPageRef); // Render the PDF page into the context
 
+    if (_annotations) {
+        NSLog(@"Annotations: %d", [_annotations count]);
+        //Flip back right-side up
+        CGContextScaleCTM(context, 1.0f, -1.0f);
+        CGContextTranslateCTM(context, 0.0f, -self.bounds.size.height);
+        for (Annotation *anno in _annotations) {
+            [anno drawInContext:context];
+        }
+    }
+    
+    
 	if (readerContentPage != nil) readerContentPage = nil; // Release self
 }
 
