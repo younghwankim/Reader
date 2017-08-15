@@ -79,6 +79,8 @@
 		8E56B5681F436187004E6431 /* AnnotationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E56B5621F436187004E6431 /* AnnotationStore.m */; };
 		8E56B5691F436187004E6431 /* AnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E56B5641F436187004E6431 /* AnnotationViewController.m */; };
 		8E56B56A1F436187004E6431 /* ReaderAnnotateToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E56B5661F436187004E6431 /* ReaderAnnotateToolbar.m */; };
+		8E56B56F1F438F9D004E6431 /* Reader-Annotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E56B56D1F438F9D004E6431 /* Reader-Annotate.png */; };
+		8E56B5701F438F9D004E6431 /* Reader-Annotate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E56B56E1F438F9D004E6431 /* Reader-Annotate@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -191,6 +193,8 @@
 		8E56B5641F436187004E6431 /* AnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnnotationViewController.m; path = Sources/Annotations/AnnotationViewController.m; sourceTree = "<group>"; };
 		8E56B5651F436187004E6431 /* ReaderAnnotateToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderAnnotateToolbar.h; path = Sources/Annotations/ReaderAnnotateToolbar.h; sourceTree = "<group>"; };
 		8E56B5661F436187004E6431 /* ReaderAnnotateToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderAnnotateToolbar.m; path = Sources/Annotations/ReaderAnnotateToolbar.m; sourceTree = "<group>"; };
+		8E56B56D1F438F9D004E6431 /* Reader-Annotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Annotate.png"; path = "Graphics/Reader-Annotate.png"; sourceTree = "<group>"; };
+		8E56B56E1F438F9D004E6431 /* Reader-Annotate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Annotate@2x.png"; path = "Graphics/Reader-Annotate@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +319,8 @@
 		45943FC417FDCA3E003CC77A /* Reader */ = {
 			isa = PBXGroup;
 			children = (
+				8E56B56D1F438F9D004E6431 /* Reader-Annotate.png */,
+				8E56B56E1F438F9D004E6431 /* Reader-Annotate@2x.png */,
 				8E56B5521F436093004E6431 /* Reader-RedPen.png */,
 				8E56B5531F436093004E6431 /* Reader-RedPen@2x.png */,
 				8E56B5541F436093004E6431 /* Reader-Sign.png */,
@@ -478,6 +484,7 @@
 			files = (
 				4541A9D8122EA716001A5E60 /* Localizable.strings in Resources */,
 				45D984391C501B0300ADFD5E /* Reader-Email@3x.png in Resources */,
+				8E56B56F1F438F9D004E6431 /* Reader-Annotate.png in Resources */,
 				8E56B55A1F436093004E6431 /* Reader-Sign.png in Resources */,
 				45D984371C501B0300ADFD5E /* Reader-Button-H@3x.png in Resources */,
 				4524A6EE1C500F2F00D7DF7F /* AppIcon-167.png in Resources */,
@@ -496,6 +503,7 @@
 				45D984381C501B0300ADFD5E /* Reader-Button-N@3x.png in Resources */,
 				4521AB4019C5EE6000B16688 /* Reader-Export@2x.png in Resources */,
 				4513ACFB19C4A1FB004916D1 /* AppIcon-180.png in Resources */,
+				8E56B5701F438F9D004E6431 /* Reader-Annotate@2x.png in Resources */,
 				45AB72DC141FC039003524C3 /* Reader.pdf in Resources */,
 				45D9843A1C501B0300ADFD5E /* Reader-Export@3x.png in Resources */,
 				8E56B5591F436093004E6431 /* Reader-RedPen@2x.png in Resources */,
