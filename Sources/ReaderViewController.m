@@ -69,6 +69,8 @@
 	BOOL ignoreDidScroll;
     
     ReaderAnnotateToolbar *annotateToolbar;
+    
+    ReaderAnnotateToolbar *annotatePagebar;
 }
 
 #pragma mark - Constants
@@ -387,6 +389,17 @@
 	mainPagebar = [[ReaderMainPagebar alloc] initWithFrame:pagebarRect document:document]; // ReaderMainPagebar
 	mainPagebar.delegate = self; // ReaderMainPagebarDelegate
 	[self.view addSubview:mainPagebar];
+    
+    annotatePagebar = [[ReaderAnnotateToolbar alloc] initWithFrame:pagebarRect]; // At top for annotating
+    
+    annotatePagebar.delegate = self;
+    //hidden by default
+    annotatePagebar.hidden = YES;
+    [self.view addSubview:annotatePagebar];
+    
+    
+    
+    
 
 	if (fakeStatusBar != nil) [self.view addSubview:fakeStatusBar]; // Add status bar background view
 
@@ -467,7 +480,7 @@
 	NSLog(@"%s", __FUNCTION__);
 #endif
 
-	mainToolbar = nil; annotateToolbar = nil; mainPagebar = nil;
+	mainToolbar = nil; annotateToolbar = nil; mainPagebar = nil; annotatePagebar = nil;
 
 	theScrollView = nil; contentViews = nil; lastHideTime = nil;
 
@@ -1074,7 +1087,9 @@
 
 - (void) startAnnotation {
     [annotateToolbar showToolbar];
+    [annotatePagebar showToolbar];
     [mainToolbar hideToolbar];
+    [mainPagebar hidePagebar];
     
     ReaderContentView *view = [contentViews objectForKey:document.pageNumber];
     [self.annotationController moveToPage:[document.pageNumber intValue] contentView:view];
@@ -1083,7 +1098,9 @@
 
 - (void) cancelAnnotation {
     [annotateToolbar hideToolbar];
+    [annotatePagebar hideToolbar];
     [mainToolbar showToolbar];
+    [mainPagebar showPagebar];
     
     [self.annotationController clear];
     [self.annotationController hide];
@@ -1091,7 +1108,9 @@
 
 - (void) finishAnnotation {
     [annotateToolbar hideToolbar];
+    [annotatePagebar hideToolbar];
     [mainToolbar showToolbar];
+    [mainPagebar showPagebar];
     
     AnnotationStore *annotations = [self.annotationController annotations];
     [document.annotations addAnnotations:annotations];
