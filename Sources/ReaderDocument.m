@@ -363,11 +363,11 @@
     return _annotations;
 }
 
-+ (NSURL*) urlForAnnotatedDocument:(ReaderDocument *)document
++ (NSURL*) urlForAnnotatedDocument:(ReaderDocument *)document fileName:(NSString *)fileName
 {
     CGPDFDocumentRef doc = CGPDFDocumentCreateUsingUrl((__bridge CFURLRef)document.fileURL, document.password);
     
-    NSString *tempPath = [NSTemporaryDirectory() stringByAppendingString:@"annotated.pdf"];
+    NSString *tempPath = [NSTemporaryDirectory() stringByAppendingString:fileName];
     //CGRectZero means the default page size is 8.5x11
     //We don't care about the default anyway, because we set each page to be a specific size
     UIGraphicsBeginPDFContextToFile(tempPath, CGRectZero, nil);
@@ -408,6 +408,19 @@
     return [NSURL fileURLWithPath:tempPath];
 }
 
++ (int) numberOfAnnotations:(ReaderDocument *)document {
+    int pages = [document.pageCount intValue];
+    int totalNumber = 0;
+    
+    for (int i = 1; i <= pages; i++) {
+        NSArray *annotations = [document.annotations annotationsForPage:i];
+        
+        if(annotations && annotations.count > 0){
+            totalNumber += annotations.count;
+        }
+    }
+    return totalNumber;
+}
 
 + (CGRect) boundsForPDFPage:(CGPDFPageRef) page{
     CGRect cropBoxRect = CGPDFPageGetBoxRect(page, kCGPDFCropBox);

@@ -765,15 +765,91 @@
 
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar exportButton:(UIButton *)button
 {
-	if (printInteraction != nil) [printInteraction dismissAnimated:YES];
+    int totalAnnotation = [ReaderDocument numberOfAnnotations:document];
+    
+    if(totalAnnotation > 0 ) {
+        //save annotated document
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"File Name"
+                                      message:@"Please, input file name"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       
+                                       UITextField *fileNameField = alert.textFields[0];
+                                       NSString *fileName;
+                                       NSURL *fileURL;
+                                       if(fileNameField.text.length == 0){
+                                           fileName = [NSString stringWithFormat:@"%@_ann.pdf",[document.fileName stringByDeletingPathExtension]];
+                                           fileURL = [ReaderDocument urlForAnnotatedDocument:document fileName:fileName];
+                                           
+                                       }else if([fileNameField.text containsString:@".pdf"] || [fileNameField.text containsString:@".PDF"]){
+                                           if(fileNameField.text.length == 4){
+                                               fileName = [NSString stringWithFormat:@"%@_ann.pdf",[document.fileName stringByDeletingPathExtension]];
+                                               fileURL = [ReaderDocument urlForAnnotatedDocument:document fileName:fileName];
+                                           }else{
+                                               fileURL = [ReaderDocument urlForAnnotatedDocument:document fileName:fileNameField.text];
+                                           }
+                                       }else{
+                                           fileName = [NSString stringWithFormat:@"%@.pdf",[fileNameField.text stringByDeletingPathExtension]];
+                                           fileURL = [ReaderDocument urlForAnnotatedDocument:document fileName:fileName];
+                                       }
+                                       if (delegate && [delegate respondsToSelector:@selector(savedAnnotatedDocument:)] == YES)
+                                       {
+                                           [delegate savedAnnotatedDocument:fileURL];
+                                       }
+                                       
+                                    }];
+        
+        UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * action) {
+                                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                                       }];
+        
+        [alert addAction:ok];
+        [alert addAction:cancel];
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = [NSString stringWithFormat:@"%@_ann.pdf",[document.fileName stringByDeletingPathExtension]];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Info"
+                                      message:@"no modification!"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
 
-	NSURL *fileURL = document.fileURL; // Document file URL
+    }
+    
+//	if (printInteraction != nil) [printInteraction dismissAnimated:YES];
+//
+//	NSURL *fileURL = document.fileURL; // Document file URL
+//
+//	documentInteraction = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+//
+//	documentInteraction.delegate = self; // UIDocumentInteractionControllerDelegate
+//
+//	[documentInteraction presentOpenInMenuFromRect:button.bounds inView:button animated:YES];
 
-	documentInteraction = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
 
-	documentInteraction.delegate = self; // UIDocumentInteractionControllerDelegate
 
-	[documentInteraction presentOpenInMenuFromRect:button.bounds inView:button animated:YES];
+
 }
 
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar printButton:(UIButton *)button

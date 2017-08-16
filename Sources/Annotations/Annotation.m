@@ -49,29 +49,23 @@
 }
 
 - (void) drawInContext:(CGContextRef)context {
-    //Otherwise we're upside-down
-    CGContextSetTextMatrix(context, CGAffineTransformMake(1.0,0.0, 0.0, -1.0, 0.0, 0.0));
-//    CGContextSelectFont(context, "Arial", self.font.pointSize, kCGEncodingMacRoman);
-//    CGContextShowTextAtPoint(context, self.rect.origin.x, self.rect.origin.y + self.font.pointSize,
-//                             [self.text cStringUsingEncoding:[NSString defaultCStringEncoding]],
-//                             [self.text length]);
     
+    UIGraphicsPushContext(context);
 
-//    CGContextSetTextDrawingMode(context, kCGTextFill);
-//    [[UIColor blackColor] setFill]; // This is the default
-//    [self.text drawAtPoint:CGPointMake(self.rect.origin.x, self.rect.origin.y + 14)
-//            withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica"
-//                                                                 size:14],
-//                             NSForegroundColorAttributeName: [UIColor whiteColor]
-//                             }];
-    CGContextSetTextDrawingMode(context, kCGTextFill);
-    [[UIColor blackColor] setFill];
-    [@"yourstring" drawAtPoint:CGPointMake(0, 0) withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica"  size:17]}];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14]
+                                                                forKey:NSFontAttributeName];
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.text attributes:attrsDictionary];
+    [attrString drawAtPoint:CGPointMake(self.rect.origin.x, self.rect.origin.y)];
+    UIGraphicsPopContext();
+    //Otherwise we're upside-down
+    /*
+    CGContextSetTextMatrix(context, CGAffineTransformMake(1.0,0.0, 0.0, -1.0, 0.0, 0.0));
     
-    
-    
-    
-    //CGFontRef cgFont = CGFontCreateWithFontName((__bridge CFStringRef)self.font.fontName);
+    CGContextSelectFont(context, "Arial", self.font.pointSize, kCGEncodingMacRoman);
+    CGContextShowTextAtPoint(context, self.rect.origin.x, self.rect.origin.y + self.font.pointSize,
+                             [self.text cStringUsingEncoding:[NSString defaultCStringEncoding]],
+                             [self.text length]);
+    */
 }
 
 @end

@@ -35,7 +35,7 @@
 @optional // Delegate protocols
 
 - (void)dismissReaderViewController:(ReaderViewController *)viewController;
-
+- (void)savedAnnotatedDocument:(NSURL *)docURL;
 @end
 
 @interface ReaderViewController : UIViewController

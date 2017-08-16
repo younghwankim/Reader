@@ -53,6 +53,7 @@
 
 - (void)updateDocumentProperties;
 
-+ (NSURL*) urlForAnnotatedDocument:(ReaderDocument *)document;
++ (NSURL*) urlForAnnotatedDocument:(ReaderDocument *)document  fileName:(NSString *)fileName;
 - (AnnotationStore*) annotations;
++ (int) numberOfAnnotations:(ReaderDocument *)document;
 @end

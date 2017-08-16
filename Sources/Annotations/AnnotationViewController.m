@@ -95,14 +95,22 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 - (void) setAnnotationType:(NSString *)annotationType {
     //Close current annotation
     [self finishCurrentAnnotation];
+    textField.text = @"";
     _annotationType = annotationType;
     self.view.userInteractionEnabled = ![self.annotationType isEqualToString:AnnotationViewControllerType_None];
 }
 
 - (void) finishCurrentAnnotation {
     Annotation* annotation = [self getCurrentAnnotation];
+    
     if (annotation) {
-        [annotationStore addAnnotation:annotation toPage:self.currentPage];
+        if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
+            if(textField.text.length > 0){
+                [annotationStore addAnnotation:annotation toPage:(int)self.currentPage];
+            }
+        } else {
+            [annotationStore addAnnotation:annotation toPage:(int)self.currentPage];
+        }
     }
     
     if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
@@ -174,6 +182,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 
 - (void) clear{
     //Setting up a blank image to start from. This displays the current drawing
+    textField.text = @"";
     image.image = nil;
     currPath = nil;
     [currentPaths removeAllObjects];
@@ -193,7 +202,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
         [currentPaths removeLastObject];
     } else {
         //pop from store
-        [annotationStore undoAnnotationOnPage:self.currentPage];
+        [annotationStore undoAnnotationOnPage:(int)self.currentPage];
     }
     
     [self refreshDrawing];
@@ -204,7 +213,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     CGContextRef currentContext = UIGraphicsGetCurrentContext();
     
     //Draw previous paths
-    [annotationStore drawAnnotationsForPage:self.currentPage inContext:currentContext];
+    [annotationStore drawAnnotationsForPage:(int)self.currentPage inContext:currentContext];
     
     CGContextSetShouldAntialias(currentContext, YES);
     CGContextSetLineJoin(currentContext, kCGLineJoinRound);

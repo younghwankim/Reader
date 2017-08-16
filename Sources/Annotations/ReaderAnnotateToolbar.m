@@ -46,14 +46,17 @@
     self = [super initWithFrame:frame];
     if (self)
 	{
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 		CGFloat viewWidth = self.bounds.size.width;
-        
-		UIImage *imageH = [UIImage imageNamed:@"Reader-Button-H"];
-		UIImage *imageN = [UIImage imageNamed:@"Reader-Button-N"];
-        
-		buttonH = [imageH stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-		buttonN = [imageN stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-        
+
+        buttonH = nil; buttonN = nil;
+//#else
+//		UIImage *imageH = [UIImage imageNamed:@"Reader-Button-H"];
+//		UIImage *imageN = [UIImage imageNamed:@"Reader-Button-N"];
+//        
+//		buttonH = [imageH stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+//		buttonN = [imageN stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+//#endif // end of READER_FLAT_UI Option        
 		CGFloat titleX = BUTTON_X; CGFloat titleWidth = (viewWidth - (titleX + titleX));
         
 		CGFloat leftButtonX = BUTTON_X; // Left button start X position
@@ -82,15 +85,13 @@
         
         //Give the undo some padding
         titleX += BUTTON_SPACE * 2;
-        leftButtonX += BUTTON_SPACE * 2;
+        leftButtonX -= BUTTON_SPACE;// * 2;
         
         undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
 		undoButton.frame = CGRectMake(leftButtonX, BUTTON_Y, UNDO_BUTTON_WIDTH, BUTTON_HEIGHT);
-        [undoButton setTitle:NSLocalizedString(@"Undo", @"button") forState:UIControlStateNormal];
-		[undoButton setTitleColor:[UIColor colorWithWhite:0.0f alpha:1.0f] forState:UIControlStateNormal];
-        [undoButton setTitleColor:[UIColor colorWithWhite:0.5f alpha:1.0f] forState:UIControlStateDisabled];
-		[undoButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:1.0f] forState:UIControlStateHighlighted];
+        [undoButton setImage:[UIImage imageNamed:@"undo" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+        
 		[undoButton addTarget:self action:@selector(undoButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[undoButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
 		[undoButton setBackgroundImage:buttonN forState:UIControlStateNormal];
@@ -111,8 +112,8 @@
         
         doneButton.frame = CGRectMake(rightButtonX, BUTTON_Y, DONE_BUTTON_WIDTH, BUTTON_HEIGHT);
         [doneButton setTitle:NSLocalizedString(@"Done", @"button") forState:UIControlStateNormal];
-		[doneButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-		[doneButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:1.0f] forState:UIControlStateHighlighted];
+        [doneButton setTitleColor:[UIColor colorWithWhite:0.0f alpha:1.0f] forState:UIControlStateNormal];
+        [doneButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:1.0f] forState:UIControlStateHighlighted];
 		[doneButton addTarget:self action:@selector(doneButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[doneButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
 		[doneButton setBackgroundImage:buttonN forState:UIControlStateNormal];
@@ -128,7 +129,7 @@
         signButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
         signButton.frame = CGRectMake(rightButtonX, BUTTON_Y, SIGN_BUTTON_WIDTH, BUTTON_HEIGHT);
-        [signButton setImage:[UIImage imageNamed:@"Reader-Sign"] forState:UIControlStateNormal];
+        [signButton setImage:[UIImage imageNamed:@"Reader-Sign" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
         [signButton addTarget:self action:@selector(signButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [signButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
         [signButton setBackgroundImage:buttonN forState:UIControlStateNormal];
@@ -142,7 +143,7 @@
         redPenButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
         redPenButton.frame = CGRectMake(rightButtonX, BUTTON_Y, RED_PEN_BUTTON_WIDTH, BUTTON_HEIGHT);
-        [redPenButton setImage:[UIImage imageNamed:@"Reader-RedPen"] forState:UIControlStateNormal];
+        [redPenButton setImage:[UIImage imageNamed:@"Reader-RedPen" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
         [redPenButton addTarget:self action:@selector(redPenButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [redPenButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
         [redPenButton setBackgroundImage:buttonN forState:UIControlStateNormal];
@@ -156,7 +157,7 @@
         textButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
         textButton.frame = CGRectMake(rightButtonX, BUTTON_Y, TEXT_BUTTON_WIDTH, BUTTON_HEIGHT);
-        [textButton setImage:[UIImage imageNamed:@"Reader-Text"] forState:UIControlStateNormal];
+        [textButton setImage:[UIImage imageNamed:@"Reader-Text" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
         [textButton addTarget:self action:@selector(textButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [textButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
         [textButton setBackgroundImage:buttonN forState:UIControlStateNormal];
