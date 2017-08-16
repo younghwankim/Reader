@@ -795,9 +795,9 @@
                                            fileName = [NSString stringWithFormat:@"%@.pdf",[fileNameField.text stringByDeletingPathExtension]];
                                            fileURL = [ReaderDocument urlForAnnotatedDocument:document fileName:fileName];
                                        }
-                                       if (delegate && [delegate respondsToSelector:@selector(savedAnnotatedDocument:)] == YES)
+                                       if (delegate && [delegate respondsToSelector:@selector(savedAnnotatedDocument:originalFileName:)] == YES)
                                        {
-                                           [delegate savedAnnotatedDocument:fileURL];
+                                           [delegate savedAnnotatedDocument:fileURL originalFileName:document.fileName];
                                        }
                                        
                                     }];
