@@ -33,11 +33,12 @@
 #import "ReaderThumbQueue.h"
 
 #import "ReaderAnnotateToolbar.h"
+#import "ReaderAnnotatePagebar.h"
 
 #import <MessageUI/MessageUI.h>
 
 @interface ReaderViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate,
-									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate>
+									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate, ReaderAnnotatePagebarDelegate>
 @end
 
 @implementation ReaderViewController
@@ -70,7 +71,7 @@
     
     ReaderAnnotateToolbar *annotateToolbar;
     
-    ReaderAnnotateToolbar *annotatePagebar;
+    ReaderAnnotatePagebar *annotatePagebar;
 }
 
 #pragma mark - Constants
@@ -390,7 +391,7 @@
 	mainPagebar.delegate = self; // ReaderMainPagebarDelegate
 	[self.view addSubview:mainPagebar];
     
-    annotatePagebar = [[ReaderAnnotateToolbar alloc] initWithFrame:pagebarRect]; // At top for annotating
+    annotatePagebar = [[ReaderAnnotatePagebar alloc] initWithFrame:pagebarRect]; // At top for annotating
     
     annotatePagebar.delegate = self;
     //hidden by default
@@ -1083,11 +1084,37 @@
     [self.annotationController undo];
 }
 
+#pragma mark ReaderAnnotatePagebarDelegate methods
+
+- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar doneButton:(UIButton *)button {
+    
+}
+
+- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar cancelButton:(UIButton *)button {
+    
+}
+
+- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar signButton:(UIButton *)button {
+    
+}
+
+- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar redPenButton:(UIButton *)button {
+    
+}
+
+- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar textButton:(UIButton *)button {
+    
+}
+
+- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar undoButton:(UIButton *)button {
+    
+}
+
 #pragma mark Annotation Flow
 
 - (void) startAnnotation {
     [annotateToolbar showToolbar];
-    [annotatePagebar showToolbar];
+    [annotatePagebar showPagebar];
     [mainToolbar hideToolbar];
     [mainPagebar hidePagebar];
     
@@ -1098,7 +1125,7 @@
 
 - (void) cancelAnnotation {
     [annotateToolbar hideToolbar];
-    [annotatePagebar hideToolbar];
+    [annotatePagebar hidePagebar];
     [mainToolbar showToolbar];
     [mainPagebar showPagebar];
     
@@ -1108,7 +1135,7 @@
 
 - (void) finishAnnotation {
     [annotateToolbar hideToolbar];
-    [annotatePagebar hideToolbar];
+    [annotatePagebar hidePagebar];
     [mainToolbar showToolbar];
     [mainPagebar showPagebar];
     

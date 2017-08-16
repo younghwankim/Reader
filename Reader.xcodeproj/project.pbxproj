@@ -93,6 +93,7 @@
 		8E56B5681F436187004E6431 /* AnnotationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E56B5621F436187004E6431 /* AnnotationStore.m */; };
 		8E56B5691F436187004E6431 /* AnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E56B5641F436187004E6431 /* AnnotationViewController.m */; };
 		8E56B56A1F436187004E6431 /* ReaderAnnotateToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E56B5661F436187004E6431 /* ReaderAnnotateToolbar.m */; };
+		8E61D3FD1F44EB8E00D38772 /* ReaderAnnotatePagebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E61D3FB1F44EB8E00D38772 /* ReaderAnnotatePagebar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +220,8 @@
 		8E56B5641F436187004E6431 /* AnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnnotationViewController.m; path = Sources/Annotations/AnnotationViewController.m; sourceTree = "<group>"; };
 		8E56B5651F436187004E6431 /* ReaderAnnotateToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderAnnotateToolbar.h; path = Sources/Annotations/ReaderAnnotateToolbar.h; sourceTree = "<group>"; };
 		8E56B5661F436187004E6431 /* ReaderAnnotateToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderAnnotateToolbar.m; path = Sources/Annotations/ReaderAnnotateToolbar.m; sourceTree = "<group>"; };
+		8E61D3FB1F44EB8E00D38772 /* ReaderAnnotatePagebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderAnnotatePagebar.m; path = Sources/Annotations/ReaderAnnotatePagebar.m; sourceTree = "<group>"; };
+		8E61D3FC1F44EB8E00D38772 /* ReaderAnnotatePagebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderAnnotatePagebar.h; path = Sources/Annotations/ReaderAnnotatePagebar.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +458,8 @@
 				8E56B5621F436187004E6431 /* AnnotationStore.m */,
 				8E56B5631F436187004E6431 /* AnnotationViewController.h */,
 				8E56B5641F436187004E6431 /* AnnotationViewController.m */,
+				8E61D3FC1F44EB8E00D38772 /* ReaderAnnotatePagebar.h */,
+				8E61D3FB1F44EB8E00D38772 /* ReaderAnnotatePagebar.m */,
 				8E56B5651F436187004E6431 /* ReaderAnnotateToolbar.h */,
 				8E56B5661F436187004E6431 /* ReaderAnnotateToolbar.m */,
 			);
@@ -602,6 +607,7 @@
 				45AB7321141FC0B1003524C3 /* ReaderThumbsView.m in Sources */,
 				45AB7322141FC0B1003524C3 /* ReaderThumbView.m in Sources */,
 				45AB7323141FC0B1003524C3 /* ReaderViewController.m in Sources */,
+				8E61D3FD1F44EB8E00D38772 /* ReaderAnnotatePagebar.m in Sources */,
 				45AB7324141FC0B1003524C3 /* ThumbsMainToolbar.m in Sources */,
 				45AB7325141FC0B1003524C3 /* ThumbsViewController.m in Sources */,
 				4555C74C14211A00005F448D /* ReaderBookDelegate.m in Sources */,

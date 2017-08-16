@@ -23,6 +23,13 @@ extern NSString *const AnnotationViewControllerType_Text;
 @property ReaderDocument *document;
 @property NSInteger currentPage;
 
+@property NSString *fontName;
+@property UIColor *fontColor;
+@property int fontSize;
+
+@property CGColorRef pathColor;
+@property int lineWidth;
+
 - (id)initWithDocument:(ReaderDocument *)document;
 - (void)moveToPage:(int)page contentView:(ReaderContentView*) view;
 - (void) hide;
