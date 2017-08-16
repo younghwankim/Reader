@@ -190,6 +190,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 }
 
 - (void) hide {
+    textField.hidden = YES;
     [self.view removeFromSuperview];
 }
 
