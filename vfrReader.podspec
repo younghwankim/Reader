@@ -1,28 +1,17 @@
-{
-  "name": "vfrReader",
-  "version": "2.8.6",
-  "license": "MIT",
-  "summary": "PDF Reader Core for iOS",
-  "homepage": "http://www.vfr.org/",
-  "authors": {
-    "Julius Oklamcak": "joklamcak@gmail.com"
-  },
-  "source": {
-    "git": https://github.com/younghwankim/Reader,
-    "tag": "2.8.6"
-  },
-  "platforms": {
-    "ios": "8.0"
-  },
-  "source_files": "Sources/**/*.{h,m}",
-  "resources": "Graphics/reader/*.png",
-  "frameworks": [
-    "UIKit",
-    "Foundation",
-    "CoreGraphics",
-    "QuartzCore",
-    "ImageIO",
-    "MessageUI"
-  ],
-  "requires_arc": true
-}
+Pod::Spec.new do |s|
+    s.name = 'vfrReader'
+    s.version = '2.8.6'
+    s.summary = 'PDF Reader Core for iOS.'
+    s.homepage = 'https://github.com/younghwankim/Reader'
+    s.license = {
+      :type => 'MIT',
+      :file => 'License.txt'
+    }
+    s.author = {'Julius Oklamcak' => 'https://github.com/younghwankim/Reader'}
+    s.source = {:git => 'https://github.com/younghwankim/Reader'}
+    s.platform = :ios, '6.0'
+    s.source_files = 'Sources/**/*.{h,m}'
+    s.resources = ['Graphics/reader/**/*']
+    s.framework = 'Foundation', 'UIKit','CoreGraphics','QuartzCore','ImageIO','MessageUI'
+    s.requires_arc = true
+end
