@@ -345,7 +345,8 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     
     UIWindow *keyboardWindow = [UIApplication sharedApplication].windows.lastObject;
     
-    InputTextViewController *contentViewController = [[InputTextViewController alloc]initWithNibName:@"InputTextViewController" bundle:nil];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    InputTextViewController *contentViewController = [[InputTextViewController alloc]initWithNibName:@"InputTextViewController" bundle:bundle];
     contentViewController.inputTextDelegate = self;
     
     contentViewController.preferredContentSize = CGSizeMake(429,251);
@@ -415,7 +416,8 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     
     UIWindow *keyboardWindow = [UIApplication sharedApplication].windows.lastObject;
     
-    SignViewController *contentViewController = [[SignViewController alloc]initWithNibName:@"SignViewController" bundle:nil];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    SignViewController *contentViewController = [[SignViewController alloc]initWithNibName:@"SignViewController" bundle:bundle];
     contentViewController.signDelegate = self;
     
     contentViewController.preferredContentSize = CGSizeMake(432,250);
