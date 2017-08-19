@@ -36,6 +36,12 @@ extern NSString *const AnnotationViewControllerType_Text;
 - (void) clear;
 - (void) undo;
 
+- (void) showInputTextView;
+- (void) closeInputTextView;
+
+- (void) showSignView;
+- (void) closeSignView;
+
 - (AnnotationStore*) annotations;
 
 @end

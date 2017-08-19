@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     s.source = {:git => 'https://github.com/younghwankim/Reader'}
     s.platform = :ios, '6.0'
     s.source_files = 'Sources/**/*.{h,m}'
-    s.resources = ['Graphics/reader/**/*']
+    s.resources = ['Graphics/reader/**/*','Sources/**/*.xib']
     s.framework = 'Foundation', 'UIKit','CoreGraphics','QuartzCore','ImageIO','MessageUI'
     s.requires_arc = true
 end

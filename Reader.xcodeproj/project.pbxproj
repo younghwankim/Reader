@@ -48,9 +48,39 @@
 		192720A11F43C87D00DBF2C0 /* Reader-Thumbs.png in Resources */ = {isa = PBXBuildFile; fileRef = 192720781F43C87D00DBF2C0 /* Reader-Thumbs.png */; };
 		192720A21F43C87D00DBF2C0 /* Reader-Thumbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 192720791F43C87D00DBF2C0 /* Reader-Thumbs@2x.png */; };
 		192720A31F43C87D00DBF2C0 /* Reader-Thumbs@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1927207A1F43C87D00DBF2C0 /* Reader-Thumbs@3x.png */; };
+		195C71181F47B63600A4D8D9 /* InputTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195C71171F47B63600A4D8D9 /* InputTextViewController.xib */; };
+		195C711B1F47B6AB00A4D8D9 /* textpad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 195C71191F47B6AB00A4D8D9 /* textpad@2x.png */; };
+		195C711C1F47B6AB00A4D8D9 /* textpad.png in Resources */ = {isa = PBXBuildFile; fileRef = 195C711A1F47B6AB00A4D8D9 /* textpad.png */; };
+		195C711F1F47B98800A4D8D9 /* InputTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C711E1F47B98800A4D8D9 /* InputTextViewController.m */; };
+		195C71221F47B9B000A4D8D9 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71211F47B9B000A4D8D9 /* SignViewController.m */; };
+		195C71251F47BE3100A4D8D9 /* UIView-JTViewToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71241F47BE3100A4D8D9 /* UIView-JTViewToImage.m */; };
+		195C713A1F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71271F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.m */; };
+		195C713B1F47C87400A4D8D9 /* KWEPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71291F47C87400A4D8D9 /* KWEPopoverController.m */; };
+		195C713C1F47C87400A4D8D9 /* KWEBlockingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C712B1F47C87400A4D8D9 /* KWEBlockingGestureRecognizer.m */; };
+		195C713D1F47C87400A4D8D9 /* KWEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C712D1F47C87400A4D8D9 /* KWEPopoverContainerView.m */; };
+		195C713E1F47C87400A4D8D9 /* KWETouchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71311F47C87400A4D8D9 /* KWETouchableView.m */; };
+		195C713F1F47C87400A4D8D9 /* KWEWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71331F47C87400A4D8D9 /* KWEWeakReference.m */; };
+		195C71401F47C87400A4D8D9 /* NSCondition+KWEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71351F47C87400A4D8D9 /* NSCondition+KWEPopover.m */; };
+		195C71411F47C87400A4D8D9 /* UIBarButtonItem+KWEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71371F47C87400A4D8D9 /* UIBarButtonItem+KWEPopover.m */; };
+		195C71421F47C87400A4D8D9 /* UIView+KWEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71391F47C87400A4D8D9 /* UIView+KWEPopover.m */; };
 		196D4AF01F43CAD600697082 /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 196D4AED1F43CAD600697082 /* done.png */; };
 		196D4AF11F43CAD600697082 /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 196D4AEE1F43CAD600697082 /* done@2x.png */; };
 		196D4AF21F43CAD600697082 /* done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 196D4AEF1F43CAD600697082 /* done@3x.png */; };
+		198207051F467C6E00D27253 /* bigfont_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207011F467C6E00D27253 /* bigfont_ipad.png */; };
+		198207061F467C6E00D27253 /* bold_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207021F467C6E00D27253 /* bold_ipad.png */; };
+		198207071F467C6E00D27253 /* italic_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207031F467C6E00D27253 /* italic_ipad.png */; };
+		198207081F467C6E00D27253 /* smallfont_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207041F467C6E00D27253 /* smallfont_ipad.png */; };
+		1982070A1F467E9A00D27253 /* undo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207091F467E9A00D27253 /* undo_ipad.png */; };
+		1982070C1F467F5400D27253 /* empty88_btn_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1982070B1F467F5400D27253 /* empty88_btn_ipad.png */; };
+		198207101F46873700D27253 /* FontToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1982070F1F46873700D27253 /* FontToolbar.xib */; };
+		198207121F46893A00D27253 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198207111F46893A00D27253 /* SignViewController.xib */; };
+		198207151F46899F00D27253 /* signpad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207131F46899F00D27253 /* signpad@2x.png */; };
+		198207161F46899F00D27253 /* signpad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207141F46899F00D27253 /* signpad.png */; };
+		198207191F468A1C00D27253 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207171F468A1C00D27253 /* close.png */; };
+		1982071A1F468A1C00D27253 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207181F468A1C00D27253 /* close@2x.png */; };
+		1982071D1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m in Sources */ = {isa = PBXBuildFile; fileRef = 1982071B1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m */; };
+		198207221F468D4D00D27253 /* UIImage+Trim.m in Sources */ = {isa = PBXBuildFile; fileRef = 198207201F468D4D00D27253 /* UIImage+Trim.m */; };
+		198207231F468D4D00D27253 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 198207211F468D4D00D27253 /* SPUserResizableView.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -138,9 +168,55 @@
 		192720781F43C87D00DBF2C0 /* Reader-Thumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs.png"; path = "Graphics/reader/Reader-Thumbs.png"; sourceTree = "<group>"; };
 		192720791F43C87D00DBF2C0 /* Reader-Thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs@2x.png"; path = "Graphics/reader/Reader-Thumbs@2x.png"; sourceTree = "<group>"; };
 		1927207A1F43C87D00DBF2C0 /* Reader-Thumbs@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs@3x.png"; path = "Graphics/reader/Reader-Thumbs@3x.png"; sourceTree = "<group>"; };
+		195C71171F47B63600A4D8D9 /* InputTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputTextViewController.xib; path = Sources/Annotations/toolbar/InputTextViewController.xib; sourceTree = "<group>"; };
+		195C71191F47B6AB00A4D8D9 /* textpad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textpad@2x.png"; path = "Graphics/reader/textpad@2x.png"; sourceTree = "<group>"; };
+		195C711A1F47B6AB00A4D8D9 /* textpad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = textpad.png; path = Graphics/reader/textpad.png; sourceTree = "<group>"; };
+		195C711D1F47B98800A4D8D9 /* InputTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputTextViewController.h; path = Sources/Annotations/toolbar/InputTextViewController.h; sourceTree = "<group>"; };
+		195C711E1F47B98800A4D8D9 /* InputTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputTextViewController.m; path = Sources/Annotations/toolbar/InputTextViewController.m; sourceTree = "<group>"; };
+		195C71201F47B9B000A4D8D9 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignViewController.h; path = Sources/Annotations/toolbar/SignViewController.h; sourceTree = "<group>"; };
+		195C71211F47B9B000A4D8D9 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignViewController.m; path = Sources/Annotations/toolbar/SignViewController.m; sourceTree = "<group>"; };
+		195C71231F47BE3100A4D8D9 /* UIView-JTViewToImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView-JTViewToImage.h"; path = "Sources/Annotations/toolbar/UIView-JTViewToImage.h"; sourceTree = "<group>"; };
+		195C71241F47BE3100A4D8D9 /* UIView-JTViewToImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView-JTViewToImage.m"; path = "Sources/Annotations/toolbar/UIView-JTViewToImage.m"; sourceTree = "<group>"; };
+		195C71271F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWEPopoverContainerViewProperties.m; path = Sources/Annotations/toolbar/Popover/KWEPopoverContainerViewProperties.m; sourceTree = "<group>"; };
+		195C71281F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWEPopoverContainerViewProperties.h; path = Sources/Annotations/toolbar/Popover/KWEPopoverContainerViewProperties.h; sourceTree = "<group>"; };
+		195C71291F47C87400A4D8D9 /* KWEPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWEPopoverController.m; path = Sources/Annotations/toolbar/Popover/KWEPopoverController.m; sourceTree = "<group>"; };
+		195C712A1F47C87400A4D8D9 /* KWEBlockingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWEBlockingGestureRecognizer.h; path = Sources/Annotations/toolbar/Popover/KWEBlockingGestureRecognizer.h; sourceTree = "<group>"; };
+		195C712B1F47C87400A4D8D9 /* KWEBlockingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWEBlockingGestureRecognizer.m; path = Sources/Annotations/toolbar/Popover/KWEBlockingGestureRecognizer.m; sourceTree = "<group>"; };
+		195C712C1F47C87400A4D8D9 /* KWEPopoverContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWEPopoverContainerView.h; path = Sources/Annotations/toolbar/Popover/KWEPopoverContainerView.h; sourceTree = "<group>"; };
+		195C712D1F47C87400A4D8D9 /* KWEPopoverContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWEPopoverContainerView.m; path = Sources/Annotations/toolbar/Popover/KWEPopoverContainerView.m; sourceTree = "<group>"; };
+		195C712E1F47C87400A4D8D9 /* KWEPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWEPopoverController.h; path = Sources/Annotations/toolbar/Popover/KWEPopoverController.h; sourceTree = "<group>"; };
+		195C712F1F47C87400A4D8D9 /* KWEPopoverParentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWEPopoverParentView.h; path = Sources/Annotations/toolbar/Popover/KWEPopoverParentView.h; sourceTree = "<group>"; };
+		195C71301F47C87400A4D8D9 /* KWETouchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWETouchableView.h; path = Sources/Annotations/toolbar/Popover/KWETouchableView.h; sourceTree = "<group>"; };
+		195C71311F47C87400A4D8D9 /* KWETouchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWETouchableView.m; path = Sources/Annotations/toolbar/Popover/KWETouchableView.m; sourceTree = "<group>"; };
+		195C71321F47C87400A4D8D9 /* KWEWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWEWeakReference.h; path = Sources/Annotations/toolbar/Popover/KWEWeakReference.h; sourceTree = "<group>"; };
+		195C71331F47C87400A4D8D9 /* KWEWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWEWeakReference.m; path = Sources/Annotations/toolbar/Popover/KWEWeakReference.m; sourceTree = "<group>"; };
+		195C71341F47C87400A4D8D9 /* NSCondition+KWEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCondition+KWEPopover.h"; path = "Sources/Annotations/toolbar/Popover/NSCondition+KWEPopover.h"; sourceTree = "<group>"; };
+		195C71351F47C87400A4D8D9 /* NSCondition+KWEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSCondition+KWEPopover.m"; path = "Sources/Annotations/toolbar/Popover/NSCondition+KWEPopover.m"; sourceTree = "<group>"; };
+		195C71361F47C87400A4D8D9 /* UIBarButtonItem+KWEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+KWEPopover.h"; path = "Sources/Annotations/toolbar/Popover/UIBarButtonItem+KWEPopover.h"; sourceTree = "<group>"; };
+		195C71371F47C87400A4D8D9 /* UIBarButtonItem+KWEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+KWEPopover.m"; path = "Sources/Annotations/toolbar/Popover/UIBarButtonItem+KWEPopover.m"; sourceTree = "<group>"; };
+		195C71381F47C87400A4D8D9 /* UIView+KWEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+KWEPopover.h"; path = "Sources/Annotations/toolbar/Popover/UIView+KWEPopover.h"; sourceTree = "<group>"; };
+		195C71391F47C87400A4D8D9 /* UIView+KWEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+KWEPopover.m"; path = "Sources/Annotations/toolbar/Popover/UIView+KWEPopover.m"; sourceTree = "<group>"; };
 		196D4AED1F43CAD600697082 /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = done.png; path = Graphics/reader/done.png; sourceTree = "<group>"; };
 		196D4AEE1F43CAD600697082 /* done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done@2x.png"; path = "Graphics/reader/done@2x.png"; sourceTree = "<group>"; };
 		196D4AEF1F43CAD600697082 /* done@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done@3x.png"; path = "Graphics/reader/done@3x.png"; sourceTree = "<group>"; };
+		198207011F467C6E00D27253 /* bigfont_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigfont_ipad.png; path = Graphics/reader/bigfont_ipad.png; sourceTree = "<group>"; };
+		198207021F467C6E00D27253 /* bold_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bold_ipad.png; path = Graphics/reader/bold_ipad.png; sourceTree = "<group>"; };
+		198207031F467C6E00D27253 /* italic_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = italic_ipad.png; path = Graphics/reader/italic_ipad.png; sourceTree = "<group>"; };
+		198207041F467C6E00D27253 /* smallfont_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smallfont_ipad.png; path = Graphics/reader/smallfont_ipad.png; sourceTree = "<group>"; };
+		198207091F467E9A00D27253 /* undo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = undo_ipad.png; path = Graphics/reader/undo_ipad.png; sourceTree = "<group>"; };
+		1982070B1F467F5400D27253 /* empty88_btn_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = empty88_btn_ipad.png; path = Graphics/reader/empty88_btn_ipad.png; sourceTree = "<group>"; };
+		1982070F1F46873700D27253 /* FontToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FontToolbar.xib; path = Sources/Annotations/toolbar/FontToolbar.xib; sourceTree = "<group>"; };
+		198207111F46893A00D27253 /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignViewController.xib; path = Sources/Annotations/toolbar/SignViewController.xib; sourceTree = "<group>"; };
+		198207131F46899F00D27253 /* signpad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "signpad@2x.png"; path = "Graphics/reader/signpad@2x.png"; sourceTree = "<group>"; };
+		198207141F46899F00D27253 /* signpad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = signpad.png; path = Graphics/reader/signpad.png; sourceTree = "<group>"; };
+		198207171F468A1C00D27253 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close.png; path = Graphics/reader/close.png; sourceTree = "<group>"; };
+		198207181F468A1C00D27253 /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close@2x.png"; path = "Graphics/reader/close@2x.png"; sourceTree = "<group>"; };
+		1982071B1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISignatureViewQuartzQuadratic.m; path = Sources/Annotations/toolbar/NISignatureViewQuartzQuadratic.m; sourceTree = "<group>"; };
+		1982071C1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISignatureViewQuartzQuadratic.h; path = Sources/Annotations/toolbar/NISignatureViewQuartzQuadratic.h; sourceTree = "<group>"; };
+		1982071E1F468D4D00D27253 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPUserResizableView.h; path = Sources/Annotations/toolbar/SPUserResizableView.h; sourceTree = "<group>"; };
+		1982071F1F468D4D00D27253 /* UIImage+Trim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Trim.h"; path = "Sources/Annotations/toolbar/UIImage+Trim.h"; sourceTree = "<group>"; };
+		198207201F468D4D00D27253 /* UIImage+Trim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Trim.m"; path = "Sources/Annotations/toolbar/UIImage+Trim.m"; sourceTree = "<group>"; };
+		198207211F468D4D00D27253 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPUserResizableView.m; path = Sources/Annotations/toolbar/SPUserResizableView.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -254,6 +330,55 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		195C71261F47C86200A4D8D9 /* popover */ = {
+			isa = PBXGroup;
+			children = (
+				195C71271F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.m */,
+				195C71281F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.h */,
+				195C71291F47C87400A4D8D9 /* KWEPopoverController.m */,
+				195C712A1F47C87400A4D8D9 /* KWEBlockingGestureRecognizer.h */,
+				195C712B1F47C87400A4D8D9 /* KWEBlockingGestureRecognizer.m */,
+				195C712C1F47C87400A4D8D9 /* KWEPopoverContainerView.h */,
+				195C712D1F47C87400A4D8D9 /* KWEPopoverContainerView.m */,
+				195C712E1F47C87400A4D8D9 /* KWEPopoverController.h */,
+				195C712F1F47C87400A4D8D9 /* KWEPopoverParentView.h */,
+				195C71301F47C87400A4D8D9 /* KWETouchableView.h */,
+				195C71311F47C87400A4D8D9 /* KWETouchableView.m */,
+				195C71321F47C87400A4D8D9 /* KWEWeakReference.h */,
+				195C71331F47C87400A4D8D9 /* KWEWeakReference.m */,
+				195C71341F47C87400A4D8D9 /* NSCondition+KWEPopover.h */,
+				195C71351F47C87400A4D8D9 /* NSCondition+KWEPopover.m */,
+				195C71361F47C87400A4D8D9 /* UIBarButtonItem+KWEPopover.h */,
+				195C71371F47C87400A4D8D9 /* UIBarButtonItem+KWEPopover.m */,
+				195C71381F47C87400A4D8D9 /* UIView+KWEPopover.h */,
+				195C71391F47C87400A4D8D9 /* UIView+KWEPopover.m */,
+			);
+			name = popover;
+			sourceTree = "<group>";
+		};
+		1982070E1F46872400D27253 /* toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				195C71261F47C86200A4D8D9 /* popover */,
+				195C71231F47BE3100A4D8D9 /* UIView-JTViewToImage.h */,
+				195C71241F47BE3100A4D8D9 /* UIView-JTViewToImage.m */,
+				1982071E1F468D4D00D27253 /* SPUserResizableView.h */,
+				195C711D1F47B98800A4D8D9 /* InputTextViewController.h */,
+				195C711E1F47B98800A4D8D9 /* InputTextViewController.m */,
+				195C71171F47B63600A4D8D9 /* InputTextViewController.xib */,
+				198207211F468D4D00D27253 /* SPUserResizableView.m */,
+				195C71201F47B9B000A4D8D9 /* SignViewController.h */,
+				195C71211F47B9B000A4D8D9 /* SignViewController.m */,
+				1982071F1F468D4D00D27253 /* UIImage+Trim.h */,
+				198207201F468D4D00D27253 /* UIImage+Trim.m */,
+				1982071B1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m */,
+				1982071C1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.h */,
+				198207111F46893A00D27253 /* SignViewController.xib */,
+				1982070F1F46873700D27253 /* FontToolbar.xib */,
+			);
+			name = toolbar;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,8 +471,20 @@
 		45943FC417FDCA3E003CC77A /* Reader */ = {
 			isa = PBXGroup;
 			children = (
+				195C71191F47B6AB00A4D8D9 /* textpad@2x.png */,
+				195C711A1F47B6AB00A4D8D9 /* textpad.png */,
+				198207171F468A1C00D27253 /* close.png */,
+				198207181F468A1C00D27253 /* close@2x.png */,
+				198207131F46899F00D27253 /* signpad@2x.png */,
+				198207141F46899F00D27253 /* signpad.png */,
 				196D4AED1F43CAD600697082 /* done.png */,
+				1982070B1F467F5400D27253 /* empty88_btn_ipad.png */,
+				198207091F467E9A00D27253 /* undo_ipad.png */,
 				196D4AEE1F43CAD600697082 /* done@2x.png */,
+				198207011F467C6E00D27253 /* bigfont_ipad.png */,
+				198207021F467C6E00D27253 /* bold_ipad.png */,
+				198207031F467C6E00D27253 /* italic_ipad.png */,
+				198207041F467C6E00D27253 /* smallfont_ipad.png */,
 				196D4AEF1F43CAD600697082 /* done@3x.png */,
 				192720521F43C87D00DBF2C0 /* save.png */,
 				192720531F43C87D00DBF2C0 /* save@2x.png */,
@@ -452,6 +589,7 @@
 		8E56B55E1F43616D004E6431 /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
+				1982070E1F46872400D27253 /* toolbar */,
 				8E56B55F1F436187004E6431 /* Annotation.h */,
 				8E56B5601F436187004E6431 /* Annotation.m */,
 				8E56B5611F436187004E6431 /* AnnotationStore.h */,
@@ -528,6 +666,7 @@
 				1927208A1F43C87D00DBF2C0 /* Reader-Button-N@2x.png in Resources */,
 				1927209C1F43C87D00DBF2C0 /* Reader-RedPen@2x.png in Resources */,
 				1927209E1F43C87D00DBF2C0 /* Reader-Sign@2x.png in Resources */,
+				198207071F467C6E00D27253 /* italic_ipad.png in Resources */,
 				192720931F43C87D00DBF2C0 /* Reader-Mark-N@2x.png in Resources */,
 				1927207B1F43C87D00DBF2C0 /* save.png in Resources */,
 				192720801F43C87D00DBF2C0 /* cancel@3x.png in Resources */,
@@ -536,27 +675,34 @@
 				1927207E1F43C87D00DBF2C0 /* cancel.png in Resources */,
 				1927208B1F43C87D00DBF2C0 /* Reader-Button-N@3x.png in Resources */,
 				192720991F43C87D00DBF2C0 /* Reader-Print@2x.png in Resources */,
+				198207161F46899F00D27253 /* signpad.png in Resources */,
 				1927207C1F43C87D00DBF2C0 /* save@2x.png in Resources */,
 				192720921F43C87D00DBF2C0 /* Reader-Mark-N.png in Resources */,
 				4513ACFB19C4A1FB004916D1 /* AppIcon-180.png in Resources */,
+				198207191F468A1C00D27253 /* close.png in Resources */,
+				1982070A1F467E9A00D27253 /* undo_ipad.png in Resources */,
 				1927208C1F43C87D00DBF2C0 /* Reader-Email.png in Resources */,
 				192720981F43C87D00DBF2C0 /* Reader-Print.png in Resources */,
 				192720881F43C87D00DBF2C0 /* Reader-Button-H@3x.png in Resources */,
 				192720901F43C87D00DBF2C0 /* Reader-Export@2x.png in Resources */,
 				192720A01F43C87D00DBF2C0 /* Reader-Text@2x.png in Resources */,
 				45AB72DC141FC039003524C3 /* Reader.pdf in Resources */,
+				195C711C1F47B6AB00A4D8D9 /* textpad.png in Resources */,
 				1927209B1F43C87D00DBF2C0 /* Reader-RedPen.png in Resources */,
 				192720841F43C87D00DBF2C0 /* Reader-Annotate.png in Resources */,
 				192720961F43C87D00DBF2C0 /* Reader-Mark-Y@2x.png in Resources */,
 				192720941F43C87D00DBF2C0 /* Reader-Mark-N@3x.png in Resources */,
 				192720831F43C87D00DBF2C0 /* undo@3x.png in Resources */,
 				1927207F1F43C87D00DBF2C0 /* cancel@2x.png in Resources */,
+				198207151F46899F00D27253 /* signpad@2x.png in Resources */,
 				192720951F43C87D00DBF2C0 /* Reader-Mark-Y.png in Resources */,
+				198207121F46893A00D27253 /* SignViewController.xib in Resources */,
 				1927209F1F43C87D00DBF2C0 /* Reader-Text.png in Resources */,
 				192720871F43C87D00DBF2C0 /* Reader-Button-H@2x.png in Resources */,
 				196D4AF11F43CAD600697082 /* done@2x.png in Resources */,
 				4524A6F01C5011D700D7DF7F /* Reader-App.storyboard in Resources */,
 				192720851F43C87D00DBF2C0 /* Reader-Annotate@2x.png in Resources */,
+				198207061F467C6E00D27253 /* bold_ipad.png in Resources */,
 				4544394917FDD5E700781873 /* AppIcon-120.png in Resources */,
 				192720811F43C87D00DBF2C0 /* undo.png in Resources */,
 				1927207D1F43C87D00DBF2C0 /* save@3x.png in Resources */,
@@ -564,7 +710,11 @@
 				192720911F43C87D00DBF2C0 /* Reader-Export@3x.png in Resources */,
 				192720971F43C87D00DBF2C0 /* Reader-Mark-Y@3x.png in Resources */,
 				192720A11F43C87D00DBF2C0 /* Reader-Thumbs.png in Resources */,
+				198207081F467C6E00D27253 /* smallfont_ipad.png in Resources */,
+				198207101F46873700D27253 /* FontToolbar.xib in Resources */,
+				1982070C1F467F5400D27253 /* empty88_btn_ipad.png in Resources */,
 				4544394817FDD5E700781873 /* AppIcon-076.png in Resources */,
+				198207051F467C6E00D27253 /* bigfont_ipad.png in Resources */,
 				196D4AF01F43CAD600697082 /* done.png in Resources */,
 				192720821F43C87D00DBF2C0 /* undo@2x.png in Resources */,
 				192720891F43C87D00DBF2C0 /* Reader-Button-N.png in Resources */,
@@ -575,6 +725,9 @@
 				192720861F43C87D00DBF2C0 /* Reader-Button-H.png in Resources */,
 				1927209D1F43C87D00DBF2C0 /* Reader-Sign.png in Resources */,
 				196D4AF21F43CAD600697082 /* done@3x.png in Resources */,
+				195C71181F47B63600A4D8D9 /* InputTextViewController.xib in Resources */,
+				1982071A1F468A1C00D27253 /* close@2x.png in Resources */,
+				195C711B1F47B6AB00A4D8D9 /* textpad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,33 +739,48 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				195C71221F47B9B000A4D8D9 /* SignViewController.m in Sources */,
 				45AB72EB141FC0A2003524C3 /* ReaderAppDelegate.m in Sources */,
 				45AB72EC141FC0A2003524C3 /* ReaderDemoController.m in Sources */,
 				45AB7313141FC0B1003524C3 /* CGPDFDocument.m in Sources */,
 				45AB7314141FC0B1003524C3 /* ReaderConstants.m in Sources */,
 				45AB7315141FC0B1003524C3 /* ReaderContentPage.m in Sources */,
 				45AB7316141FC0B1003524C3 /* ReaderContentTile.m in Sources */,
+				195C71421F47C87400A4D8D9 /* UIView+KWEPopover.m in Sources */,
 				45AB7317141FC0B1003524C3 /* ReaderContentView.m in Sources */,
+				1982071D1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m in Sources */,
 				8E56B5681F436187004E6431 /* AnnotationStore.m in Sources */,
 				45AB7318141FC0B1003524C3 /* ReaderDocument.m in Sources */,
 				45AB7319141FC0B1003524C3 /* ReaderMainPagebar.m in Sources */,
+				195C713B1F47C87400A4D8D9 /* KWEPopoverController.m in Sources */,
 				8E56B5671F436187004E6431 /* Annotation.m in Sources */,
 				45AB731A141FC0B1003524C3 /* ReaderMainToolbar.m in Sources */,
+				195C71251F47BE3100A4D8D9 /* UIView-JTViewToImage.m in Sources */,
+				198207231F468D4D00D27253 /* SPUserResizableView.m in Sources */,
 				45AB731C141FC0B1003524C3 /* ReaderThumbCache.m in Sources */,
+				198207221F468D4D00D27253 /* UIImage+Trim.m in Sources */,
 				45AB731D141FC0B1003524C3 /* ReaderThumbFetch.m in Sources */,
+				195C71411F47C87400A4D8D9 /* UIBarButtonItem+KWEPopover.m in Sources */,
 				45AB731E141FC0B1003524C3 /* ReaderThumbQueue.m in Sources */,
 				45AB731F141FC0B1003524C3 /* ReaderThumbRender.m in Sources */,
 				45AB7320141FC0B1003524C3 /* ReaderThumbRequest.m in Sources */,
+				195C713A1F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.m in Sources */,
 				8E56B5691F436187004E6431 /* AnnotationViewController.m in Sources */,
 				45AB7321141FC0B1003524C3 /* ReaderThumbsView.m in Sources */,
 				45AB7322141FC0B1003524C3 /* ReaderThumbView.m in Sources */,
 				45AB7323141FC0B1003524C3 /* ReaderViewController.m in Sources */,
 				8E61D3FD1F44EB8E00D38772 /* ReaderAnnotatePagebar.m in Sources */,
+				195C71401F47C87400A4D8D9 /* NSCondition+KWEPopover.m in Sources */,
+				195C713D1F47C87400A4D8D9 /* KWEPopoverContainerView.m in Sources */,
+				195C713C1F47C87400A4D8D9 /* KWEBlockingGestureRecognizer.m in Sources */,
+				195C713F1F47C87400A4D8D9 /* KWEWeakReference.m in Sources */,
+				195C711F1F47B98800A4D8D9 /* InputTextViewController.m in Sources */,
 				45AB7324141FC0B1003524C3 /* ThumbsMainToolbar.m in Sources */,
 				45AB7325141FC0B1003524C3 /* ThumbsViewController.m in Sources */,
 				4555C74C14211A00005F448D /* ReaderBookDelegate.m in Sources */,
 				455C7891142687CA0053D73B /* UIXToolbarView.m in Sources */,
 				8E56B56A1F436187004E6431 /* ReaderAnnotateToolbar.m in Sources */,
+				195C713E1F47C87400A4D8D9 /* KWETouchableView.m in Sources */,
 				45D5ADA31610EADD00706B9A /* ReaderDocumentOutline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

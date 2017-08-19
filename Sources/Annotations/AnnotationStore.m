@@ -47,9 +47,13 @@
     [self addAnnotation:[CustomAnnotation customAnnotationWithBlock:block] toPage:page];
 }
 
+- (void) addImage:(UIImage*)image inRect:(CGRect)rect toPage:(int)page
+{
+    [self addAnnotation:[ImageAnnotation imageAnnotationWithImage:image inRect:rect] toPage:page];
+}
+
 - (void) addAnnotations:(AnnotationStore *)newAnnotations {
-    int count = [annotations count];
-    for (int page = 1; page <= count; page++) {
+    for (int page = 1; page <= [annotations count]; page++) {
         NSMutableArray *pageAnnotations = [annotations objectAtIndex:(page - 1)];
         NSArray *otherAnnotations = [newAnnotations annotationsForPage:page];
         [pageAnnotations addObjectsFromArray:otherAnnotations];
@@ -68,9 +72,8 @@
 }
 
 - (void)empty {
-    int count = [annotations count];
-    NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i < count; i++) {
+    NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[annotations count]];
+    for (int i = 0; i < [annotations count]; i++) {
         [tmp addObject:[NSMutableArray array]];
     }
     annotations = [NSArray arrayWithArray:tmp];
@@ -78,7 +81,7 @@
 
 - (NSArray*) annotationsForPage:(int)page {
     if (page - 1 >= [annotations count]) {
-        NSLog(@"We wanted index %d but only have %d items", page - 1 , [annotations count]);
+        NSLog(@"We wanted index %d but only have %ld items", page - 1 , [annotations count]);
         return [NSArray array];
     }
     return [annotations objectAtIndex:(page-1)];

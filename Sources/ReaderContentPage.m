@@ -501,8 +501,8 @@
 
     if (view != nil) {
         [self buildAnnotationLinksList];
-        NSLog(@"Rending Page %d", page);
-        _annotations = [annotations annotationsForPage:page];
+        NSLog(@"Rending Page %ld", page);
+        _annotations = [annotations annotationsForPage:(int)page];
 
     }
 	return view;
@@ -554,7 +554,7 @@
 	CGContextDrawPDFPage(context, _PDFPageRef); // Render the PDF page into the context
 
     if (_annotations) {
-        NSLog(@"Annotations: %d", [_annotations count]);
+        NSLog(@"Annotations: %ld", [_annotations count]);
         //Flip back right-side up
         CGContextScaleCTM(context, 1.0f, -1.0f);
         CGContextTranslateCTM(context, 0.0f, -self.bounds.size.height);
@@ -562,7 +562,6 @@
             [anno drawInContext:context];
         }
     }
-    
     
 	if (readerContentPage != nil) readerContentPage = nil; // Release self
 }

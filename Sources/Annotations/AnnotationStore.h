@@ -16,6 +16,7 @@
 - (void) addPath:(CGPathRef)path withColor:(CGColorRef)color fill:(BOOL)fill toPage:(int)page;
 - (void) addText:(NSString*)text inRect:(CGRect)rect withFont:(UIFont*)font toPage:(int)page;
 - (void) addCustomAnnotationWithBlock:(CustomAnnotationDrawingBlock)block toPage:(int)page;
+- (void) addImage:(UIImage*)image inRect:(CGRect)rect toPage:(int)page;
 
 - (void) addAnnotations:(AnnotationStore*)annotations;
 

@@ -7,6 +7,12 @@
 //
 
 #import "AnnotationViewController.h"
+#import "KWEPopoverController.h"
+#import "SignViewController.h"
+#import "UIImage+Trim.h"
+#import "SPUserResizableView.h"
+#import "UIView-JTViewToImage.h"
+#import "InputTextViewController.h"
 
 NSString *const AnnotationViewControllerType_None = @"None";
 NSString *const AnnotationViewControllerType_Sign = @"Sign";
@@ -17,8 +23,8 @@ int const ANNOTATION_IMAGE_TAG = 431;
 CGFloat const TEXT_FIELD_WIDTH = 300;
 CGFloat const TEXT_FIELD_HEIGHT = 32;
 
-@interface AnnotationViewController ()
-
+@interface AnnotationViewController () <SignViewDelegate, SPUserResizableViewDelegate, InputTextVCDelegate>
+@property (nonatomic, retain) KWEPopoverController *wePopoverController;
 @end
 
 @implementation AnnotationViewController {
@@ -35,7 +41,9 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     
     BOOL didMove;
     
-    UITextField *textField;
+    UILabel *textField;
+    
+    SPUserResizableView *imageResizableView;
 }
 
 @dynamic annotationType;
@@ -74,6 +82,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     [pageView addSubview:textField];
 }
 
+
 - (UIImageView*) createImageView {
     UIImageView *temp = [[UIImageView alloc] initWithImage:nil];
     temp.frame = pageView.frame;
@@ -81,10 +90,12 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     return temp;
 }
 
-- (UITextField*) createTextField {
-    UITextField *temp = [[UITextField alloc] initWithFrame:CGRectMake(400, 400, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)];
+- (UILabel*) createTextField {
+    UILabel *temp = [[UILabel alloc] initWithFrame:CGRectMake(400, 400, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)];
     temp.hidden = YES;
-    temp.borderStyle = UITextBorderStyleLine;
+    temp.font = [UIFont systemFontOfSize:14];
+//    temp.borderStyle = UITextBorderStyleLine;
+//    temp.font = [UIFont systemFontOfSize:14];
     return temp;
 }
 
@@ -112,11 +123,15 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
             [annotationStore addAnnotation:annotation toPage:(int)self.currentPage];
         }
     }
+    if(imageResizableView){
+        [imageResizableView hideEditingHandles];
+    }
     
     if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
         [self refreshDrawing];
     }
 
+    
     textField.hidden = YES;
     [currentPaths removeAllObjects];
     currPath = nil;
@@ -136,7 +151,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
         return nil;
     }
     
-    if (!currPath && [currentPaths count] == 0) {
+    if (!currPath && ([currentPaths count] == 0) && imageResizableView==nil) {
         return nil;
     }
     
@@ -150,7 +165,10 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
         return [PathAnnotation pathAnnotationWithPath:basePath color:annotationColor lineWidth:5.0 fill:NO];
     }
     if ([self.annotationType isEqualToString:AnnotationViewControllerType_Sign]) {
-        return [PathAnnotation pathAnnotationWithPath:basePath color:signColor lineWidth:3.0 fill:NO];
+        if(imageResizableView){
+            [imageResizableView hideEditingHandles];
+            return [ImageAnnotation imageAnnotationWithImage:[imageResizableView toImage] inRect:imageResizableView.frame];
+        }
     }
     return nil;
 }
@@ -187,6 +205,9 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     currPath = nil;
     [currentPaths removeAllObjects];
     [annotationStore empty];
+    if(imageResizableView && imageResizableView.superview )
+        [imageResizableView removeFromSuperview];
+    imageResizableView = nil;
 }
 
 - (void) hide {
@@ -201,7 +222,13 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     } else if ([currentPaths count] > 0) {
         //if we have a current path, undo it
         [currentPaths removeLastObject];
-    } else {
+    } else if (imageResizableView) {
+        [imageResizableView removeFromSuperview];
+        imageResizableView = nil;
+    } else if ([textField.text length] > 0) {
+        textField.text = @"";
+        textField.hidden = YES;
+    }else {
         //pop from store
         [annotationStore undoAnnotationOnPage:(int)self.currentPage];
     }
@@ -224,12 +251,12 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
         CGContextSetLineWidth(currentContext, 5.0);
         CGContextSetStrokeColorWithColor(currentContext, annotationColor);
     }
-    if ([self.annotationType isEqualToString:AnnotationViewControllerType_Sign]) {
-        //Setup style
-        CGContextSetLineCap(currentContext, kCGLineCapRound);
-        CGContextSetLineWidth(currentContext, 3.0);
-        CGContextSetStrokeColorWithColor(currentContext, signColor);
-    }
+//    if ([self.annotationType isEqualToString:AnnotationViewControllerType_Sign]) {
+//        //Setup style
+//        CGContextSetLineCap(currentContext, kCGLineCapRound);
+//        CGContextSetLineWidth(currentContext, 3.0);
+//        CGContextSetStrokeColorWithColor(currentContext, signColor);
+//    }
     
     //Draw Paths
     for (UIBezierPath *path in currentPaths) {
@@ -249,16 +276,13 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     lastPoint = [touch locationInView:pageView];
     
     if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
-        if (textField.hidden) {
-            [textField becomeFirstResponder];
-        }
+        
+        textField.frame = CGRectMake(lastPoint.x, lastPoint.y, textField.frame.size.width, textField.frame.size.height);
 
-        if ([textField pointInside:[touch locationInView:textField] withEvent:nil]) {
-            [textField becomeFirstResponder];
-        } else {
-            textField.frame = CGRectMake(lastPoint.x + 20, lastPoint.y, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT);
-        }
         textField.hidden = NO;
+    } else if ([self.annotationType isEqualToString:AnnotationViewControllerType_Sign]){
+        [imageResizableView touchesBegan:touches withEvent:event];
+        
     } else {
         if (currPath) {
             [currentPaths addObject:[UIBezierPath bezierPathWithCGPath:currPath]];
@@ -276,20 +300,26 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     UITouch *touch = [touches anyObject];
     CGPoint currentPoint = [touch locationInView:pageView];
     
-    if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
-        textField.frame = CGRectMake(lastPoint.x + 20, lastPoint.y, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT);
-    } else {
+    if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text] && self.wePopoverController==nil) {
+        textField.frame = CGRectMake(lastPoint.x, lastPoint.y, textField.frame.size.width, textField.frame.size.height);
+    } else if ([self.annotationType isEqualToString:AnnotationViewControllerType_RedPen]){
         //Update path
         CGPathAddLineToPoint(currPath, NULL, currentPoint.x, currentPoint.y);
         [self refreshDrawing];
+    } else if ([self.annotationType isEqualToString:AnnotationViewControllerType_Sign]){
+        [imageResizableView touchesMoved:touches withEvent:event];
+        
     }
-    
     lastPoint = currentPoint;
     
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+
     if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
+        return;
+    } else if ([self.annotationType isEqualToString:AnnotationViewControllerType_Sign]) {
+        [imageResizableView touchesEnded:touches withEvent:event];
         return;
     }
 
@@ -306,6 +336,182 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark InputTextView
+
+- (void) showInputTextView {
+    [self closeInputTextView];
+    
+    UIWindow *keyboardWindow = [UIApplication sharedApplication].windows.lastObject;
+    
+    InputTextViewController *contentViewController = [[InputTextViewController alloc]initWithNibName:@"InputTextViewController" bundle:nil];
+    contentViewController.inputTextDelegate = self;
+    
+    contentViewController.preferredContentSize = CGSizeMake(429,251);
+    
+    CGFloat myScale = [self calculateScale];
+    
+    self.wePopoverController = [[KWEPopoverController alloc] initWithContentViewController:contentViewController] ;
+    self.wePopoverController.popoverContentSize = CGSizeMake(contentViewController.view.frame.size.width*myScale, contentViewController.view.frame.size.height*myScale);
+    
+    if(myScale < 1.0) {
+        CGAffineTransform transform = contentViewController.view.transform;
+        transform = CGAffineTransformScale(transform,  myScale,myScale);
+        contentViewController.view.transform = transform;
+    }
+    
+    CGRect rcFrame;
+    
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        rcFrame = CGRectMake(-20,100,0,30);
+    }else{
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        if(screenRect.size.width > screenRect.size.height){
+            rcFrame = CGRectMake(screenRect.size.width/2,50,20,30);
+        }else{
+            rcFrame = CGRectMake(screenRect.size.width/2,200,20,30);
+        }
+    }
+    
+    [self.wePopoverController presentPopoverFromRect:rcFrame
+                                              inView:keyboardWindow
+                            permittedArrowDirections:UIPopoverArrowDirectionUp
+                                            animated:YES];
+}
+
+- (void) closeInputTextView {
+    if (self.wePopoverController != nil && self.wePopoverController.popoverVisible) {
+        [self.wePopoverController dismissPopoverAnimated:YES];
+        self.wePopoverController = nil;
+    }
+}
+
+#pragma mark InputTextVCDelegate
+- (void) closeInputText {
+    [self closeInputTextView];
+}
+
+- (void) saveInputText:(NSString *)textString {
+    [self closeInputTextView];
+    
+    CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
+    
+    textField.text = textString;
+    
+    CGSize size = [textField sizeThatFits:CGSizeMake(250, CGFLOAT_MAX)];
+    
+    CGRect labelFrame = CGRectMake((visibleRect.origin.x < 0 ? 20 : visibleRect.origin.x + 20), (visibleRect.origin.y < 0 ? 100 : visibleRect.origin.y + 100), size.width, size.height);
+    textField.frame = labelFrame;
+    textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    textField.layer.borderWidth = 1.0;
+    textField.hidden = NO;
+}
+
+#pragma mark SignView
+
+- (void) showSignView {
+    [self closeSignView];
+    
+    UIWindow *keyboardWindow = [UIApplication sharedApplication].windows.lastObject;
+    
+    SignViewController *contentViewController = [[SignViewController alloc]initWithNibName:@"SignViewController" bundle:nil];
+    contentViewController.signDelegate = self;
+    
+    contentViewController.preferredContentSize = CGSizeMake(432,250);
+    
+    CGFloat myScale = [self calculateScale];
+    
+    self.wePopoverController = [[KWEPopoverController alloc] initWithContentViewController:contentViewController] ;
+    self.wePopoverController.popoverContentSize = CGSizeMake(contentViewController.view.frame.size.width*myScale, contentViewController.view.frame.size.height*myScale);
+    
+    if(myScale < 1.0) {
+        CGAffineTransform transform = contentViewController.view.transform;
+        transform = CGAffineTransformScale(transform,  myScale,myScale);
+        contentViewController.view.transform = transform;
+    }
+    
+    CGRect rcFrame;
+    
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        rcFrame = CGRectMake(-20,100,0,30);
+    }else{
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        rcFrame = CGRectMake(screenRect.size.width/2,200,20,30);
+    }
+    
+    [self.wePopoverController presentPopoverFromRect:rcFrame
+                                              inView:keyboardWindow
+                            permittedArrowDirections:UIPopoverArrowDirectionUp
+                                            animated:YES];
+}
+
+-(void) closeSignView {
+    if (self.wePopoverController != nil && self.wePopoverController.popoverVisible) {
+        [self.wePopoverController dismissPopoverAnimated:YES];
+        self.wePopoverController = nil;
+    }
+}
+
+#pragma mark SignViewDelegate
+- (void) closeSign
+{
+    [self closeSignView];
+}
+
+- (void) saveSign:(UIImage *)imgSign
+{
+    [self closeSignView];
+    
+    CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
+    
+    if(imgSign.size.width >300 || imgSign.size.height >300){
+        imgSign =[imgSign scaleImageToSize:CGSizeMake(300,300)];
+    }
+    
+    CGRect imageFrame = CGRectMake((visibleRect.origin.x < 0 ? 20 : visibleRect.origin.x + 20), (visibleRect.origin.y < 0 ? 100 : visibleRect.origin.y + 100), imgSign.size.width, imgSign.size.height);
+    
+    imageResizableView = [[SPUserResizableView alloc] initWithFrame:imageFrame];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:imgSign];
+    imageResizableView.contentView = imageView;
+    imageResizableView.delegate = self;
+    [imageResizableView removeFromSuperview];
+    [pageView addSubview:imageResizableView];
+}
+
+#pragma mark SPUserResizableViewDelegate
+
+- (void)userResizableViewDidBeginEditing:(SPUserResizableView *)userResizableView {
+    [imageResizableView hideEditingHandles];
+    imageResizableView = userResizableView;
+}
+
+- (void)userResizableViewDidEndEditing:(SPUserResizableView *)userResizableView {
+    imageResizableView = userResizableView;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([imageResizableView hitTest:[touch locationInView:imageResizableView] withEvent:nil]) {
+        return NO;
+    }
+    return YES;
+}
+
+#pragma mark util
+- (CGFloat) calculateScale {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        if(screenRect.size.width <= 321){
+            return 0.62;
+        }else if(screenRect.size.width <= 375){
+            return 0.75;
+        }else {
+            return 0.83;
+        }
+    } else {
+        return 1.0;
+    }
 }
 
 @end

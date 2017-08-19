@@ -33,12 +33,11 @@
 #import "ReaderThumbQueue.h"
 
 #import "ReaderAnnotateToolbar.h"
-#import "ReaderAnnotatePagebar.h"
 
 #import <MessageUI/MessageUI.h>
 
 @interface ReaderViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate,
-									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate, ReaderAnnotatePagebarDelegate>
+									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate>
 @end
 
 @implementation ReaderViewController
@@ -70,8 +69,6 @@
 	BOOL ignoreDidScroll;
     
     ReaderAnnotateToolbar *annotateToolbar;
-    
-    ReaderAnnotatePagebar *annotatePagebar;
 }
 
 #pragma mark - Constants
@@ -379,28 +376,11 @@
     annotateToolbar.hidden = YES;
     [self.view addSubview:annotateToolbar];
     
-    
-    
-    
-    
-    
-
-	CGRect pagebarRect = self.view.bounds; pagebarRect.size.height = PAGEBAR_HEIGHT;
-	pagebarRect.origin.y = (self.view.bounds.size.height - pagebarRect.size.height);
-	mainPagebar = [[ReaderMainPagebar alloc] initWithFrame:pagebarRect document:document]; // ReaderMainPagebar
-	mainPagebar.delegate = self; // ReaderMainPagebarDelegate
-	[self.view addSubview:mainPagebar];
-    
-    annotatePagebar = [[ReaderAnnotatePagebar alloc] initWithFrame:pagebarRect]; // At top for annotating
-    
-    annotatePagebar.delegate = self;
-    //hidden by default
-    annotatePagebar.hidden = YES;
-    [self.view addSubview:annotatePagebar];
-    
-    
-    
-    
+    CGRect pagebarRect = self.view.bounds; pagebarRect.size.height = PAGEBAR_HEIGHT;
+    pagebarRect.origin.y = (self.view.bounds.size.height - pagebarRect.size.height);
+    mainPagebar = [[ReaderMainPagebar alloc] initWithFrame:pagebarRect document:document]; // ReaderMainPagebar
+    mainPagebar.delegate = self; // ReaderMainPagebarDelegate
+    [self.view addSubview:mainPagebar];
 
 	if (fakeStatusBar != nil) [self.view addSubview:fakeStatusBar]; // Add status bar background view
 
@@ -481,7 +461,7 @@
 	NSLog(@"%s", __FUNCTION__);
 #endif
 
-	mainToolbar = nil; annotateToolbar = nil; mainPagebar = nil; annotatePagebar = nil;
+	mainToolbar = nil; annotateToolbar = nil; mainPagebar = nil;
 
 	theScrollView = nil; contentViews = nil; lastHideTime = nil;
 
@@ -850,20 +830,6 @@
         [self presentViewController:alert animated:YES completion:nil];
 
     }
-    
-//	if (printInteraction != nil) [printInteraction dismissAnimated:YES];
-//
-//	NSURL *fileURL = document.fileURL; // Document file URL
-//
-//	documentInteraction = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
-//
-//	documentInteraction.delegate = self; // UIDocumentInteractionControllerDelegate
-//
-//	[documentInteraction presentOpenInMenuFromRect:button.bounds inView:button animated:YES];
-
-
-
-
 }
 
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar printButton:(UIButton *)button
@@ -1034,10 +1000,12 @@
     [annotateToolbar setTextButtonState:NO];
     
     if ([mode isEqualToString:AnnotationViewControllerType_Sign]) {
+        [self.annotationController showSignView];
         [annotateToolbar setSignButtonState:YES];
     } else if ([mode isEqualToString:AnnotationViewControllerType_RedPen]) {
         [annotateToolbar setRedPenButtonState:YES];
     } else if ([mode isEqualToString:AnnotationViewControllerType_Text]) {
+        [self.annotationController showInputTextView];
         [annotateToolbar setTextButtonState:YES];
     }
     
@@ -1084,39 +1052,11 @@
     [self.annotationController undo];
 }
 
-#pragma mark ReaderAnnotatePagebarDelegate methods
-
-- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar doneButton:(UIButton *)button {
-    
-}
-
-- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar cancelButton:(UIButton *)button {
-    
-}
-
-- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar signButton:(UIButton *)button {
-    
-}
-
-- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar redPenButton:(UIButton *)button {
-    
-}
-
-- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar textButton:(UIButton *)button {
-    
-}
-
-- (void)tappedInAnnotatePagebar:(ReaderAnnotatePagebar *)Pagebar undoButton:(UIButton *)button {
-    
-}
-
 #pragma mark Annotation Flow
 
 - (void) startAnnotation {
     [annotateToolbar showToolbar];
-    [annotatePagebar showPagebar];
     [mainToolbar hideToolbar];
-    [mainPagebar hidePagebar];
     
     ReaderContentView *view = [contentViews objectForKey:document.pageNumber];
     [self.annotationController moveToPage:[document.pageNumber intValue] contentView:view];
@@ -1124,10 +1064,9 @@
 }
 
 - (void) cancelAnnotation {
+
     [annotateToolbar hideToolbar];
-    [annotatePagebar hidePagebar];
     [mainToolbar showToolbar];
-    [mainPagebar showPagebar];
     
     [self.annotationController clear];
     [self.annotationController hide];
@@ -1135,9 +1074,7 @@
 
 - (void) finishAnnotation {
     [annotateToolbar hideToolbar];
-    [annotatePagebar hidePagebar];
     [mainToolbar showToolbar];
-    [mainPagebar showPagebar];
     
     AnnotationStore *annotations = [self.annotationController annotations];
     [document.annotations addAnnotations:annotations];

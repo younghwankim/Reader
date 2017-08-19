@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="438" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQF-Ki-5qi">
+                    <rect key="frame" x="3" y="1" width="42" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="YQF-Ki-5qi" secondAttribute="height" multiplier="1:1" id="GxM-Fp-SGN"/>
+                    </constraints>
+                    <state key="normal" image="undo_ipad.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmv-LR-GX4">
+                    <rect key="frame" x="50" y="1" width="42" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="nmv-LR-GX4" secondAttribute="height" multiplier="1:1" id="bFQ-Qe-kd5"/>
+                    </constraints>
+                    <state key="normal" image="smallfont_ipad.png"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvR-6c-vxd">
+                    <rect key="frame" x="92" y="5" width="34" height="34"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WX3-h5-ADT">
+                            <rect key="frame" x="8" y="7.5" width="19" height="19.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="SvR-6c-vxd" secondAttribute="height" multiplier="1:1" id="Hrt-2R-IaO"/>
+                        <constraint firstItem="WX3-h5-ADT" firstAttribute="centerY" secondItem="SvR-6c-vxd" secondAttribute="centerY" id="Sqi-Fe-XJE"/>
+                        <constraint firstItem="WX3-h5-ADT" firstAttribute="centerX" secondItem="SvR-6c-vxd" secondAttribute="centerX" id="WzZ-V5-fZz"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TK5-sz-EIy">
+                    <rect key="frame" x="127" y="1" width="42" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="TK5-sz-EIy" secondAttribute="height" multiplier="1:1" id="eUs-jc-yAK"/>
+                    </constraints>
+                    <state key="normal" image="bigfont_ipad.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cp-a5-pBn">
+                    <rect key="frame" x="287.5" y="1" width="42" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="1Cp-a5-pBn" secondAttribute="height" multiplier="1:1" id="BXv-xe-8cq"/>
+                    </constraints>
+                    <state key="normal" image="bold_ipad.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CRD-Z1-IcO" userLabel="DoneButton">
+                    <rect key="frame" x="377.5" y="1" width="57.5" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="CRD-Z1-IcO" secondAttribute="height" multiplier="15:11" id="8Vy-DF-QsU"/>
+                    </constraints>
+                    <state key="normal" image="empty88_btn_ipad.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFO-O0-U8s">
+                    <rect key="frame" x="387" y="7" width="38" height="30"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKK-u1-9r8">
+                    <rect key="frame" x="332.5" y="1" width="42" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="sKK-u1-9r8" secondAttribute="height" multiplier="1:1" id="ea8-81-zgP"/>
+                    </constraints>
+                    <state key="normal" image="italic_ipad.png"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="sKK-u1-9r8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="0uj-fG-Fe7"/>
+                <constraint firstAttribute="trailing" secondItem="CRD-Z1-IcO" secondAttribute="trailing" constant="3" id="43Y-aG-ZqT"/>
+                <constraint firstItem="CRD-Z1-IcO" firstAttribute="leading" secondItem="sKK-u1-9r8" secondAttribute="trailing" constant="3" id="7f0-0w-EY3"/>
+                <constraint firstItem="CRD-Z1-IcO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="9pH-ao-fcV"/>
+                <constraint firstItem="SvR-6c-vxd" firstAttribute="leading" secondItem="nmv-LR-GX4" secondAttribute="trailing" id="EoN-mG-iQ7"/>
+                <constraint firstItem="1Cp-a5-pBn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="F8o-5a-smf"/>
+                <constraint firstAttribute="bottom" secondItem="YQF-Ki-5qi" secondAttribute="bottom" constant="1" id="Isz-L4-diV"/>
+                <constraint firstItem="sKK-u1-9r8" firstAttribute="leading" secondItem="1Cp-a5-pBn" secondAttribute="trailing" constant="3" id="LwK-zX-nu7"/>
+                <constraint firstItem="nmv-LR-GX4" firstAttribute="leading" secondItem="YQF-Ki-5qi" secondAttribute="trailing" constant="5" id="OIX-UW-065"/>
+                <constraint firstItem="TK5-sz-EIy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="RCV-nQ-H14"/>
+                <constraint firstAttribute="bottom" secondItem="TK5-sz-EIy" secondAttribute="bottom" constant="1" id="V5W-cG-LAX"/>
+                <constraint firstItem="SvR-6c-vxd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Xzp-uP-QkJ"/>
+                <constraint firstAttribute="bottom" secondItem="nmv-LR-GX4" secondAttribute="bottom" constant="1" id="bmB-fo-8Zv"/>
+                <constraint firstItem="YQF-Ki-5qi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="c9J-e6-1Js"/>
+                <constraint firstAttribute="bottom" secondItem="SvR-6c-vxd" secondAttribute="bottom" constant="5" id="cig-BW-TYI"/>
+                <constraint firstItem="TK5-sz-EIy" firstAttribute="leading" secondItem="SvR-6c-vxd" secondAttribute="trailing" constant="1" id="egT-oW-xNt"/>
+                <constraint firstItem="iFO-O0-U8s" firstAttribute="centerX" secondItem="CRD-Z1-IcO" secondAttribute="centerX" id="fsW-TJ-KGW"/>
+                <constraint firstItem="nmv-LR-GX4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="gmr-qM-WO6"/>
+                <constraint firstItem="YQF-Ki-5qi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="3" id="iZQ-cO-6Ft"/>
+                <constraint firstAttribute="bottom" secondItem="CRD-Z1-IcO" secondAttribute="bottom" constant="1" id="kMS-R3-eHR"/>
+                <constraint firstItem="iFO-O0-U8s" firstAttribute="centerY" secondItem="CRD-Z1-IcO" secondAttribute="centerY" id="mDZ-6m-n5b"/>
+                <constraint firstAttribute="bottom" secondItem="1Cp-a5-pBn" secondAttribute="bottom" constant="1" id="pHo-eN-ugl"/>
+                <constraint firstAttribute="bottom" secondItem="sKK-u1-9r8" secondAttribute="bottom" constant="1" id="rxj-OH-xge"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-13" y="-270"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bigfont_ipad.png" width="55" height="56"/>
+        <image name="bold_ipad.png" width="55" height="56"/>
+        <image name="empty88_btn_ipad.png" width="88" height="56"/>
+        <image name="italic_ipad.png" width="55" height="56"/>
+        <image name="smallfont_ipad.png" width="55" height="56"/>
+        <image name="undo_ipad.png" width="55" height="56"/>
+    </resources>
+</document>

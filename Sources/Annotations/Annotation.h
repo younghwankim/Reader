@@ -38,3 +38,11 @@ typedef void (^CustomAnnotationDrawingBlock)(CGContextRef);
 + (id) pathAnnotationWithPath:(CGPathRef)path color:(CGColorRef)color lineWidth:(CGFloat)width fill:(BOOL)fill;
 @end
 
+
+@interface ImageAnnotation : Annotation
+@property UIImage *image;
+@property CGRect rect;
+
++ (id)imageAnnotationWithImage:(UIImage*)image inRect:(CGRect)rect;
+@end
+

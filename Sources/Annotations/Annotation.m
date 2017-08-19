@@ -96,3 +96,24 @@
     }
 }
 @end
+
+
+@implementation ImageAnnotation
+@synthesize image;
+@synthesize rect;
+
+
++ (id) imageAnnotationWithImage:(UIImage *)image inRect:(CGRect)rect {
+    ImageAnnotation *ia = [[ImageAnnotation alloc] init];
+    ia.image = image;
+    ia.rect = rect;
+    return ia;
+}
+
+- (void) drawInContext:(CGContextRef)context {
+    UIGraphicsPushContext(context);
+    [image drawInRect:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)];
+    UIGraphicsPopContext();
+}
+
+@end
