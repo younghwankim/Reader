@@ -343,7 +343,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 - (void) showInputTextView {
     [self closeInputTextView];
     
-    UIWindow *keyboardWindow = [UIApplication sharedApplication].windows.lastObject;
+    UIWindow *keyboardWindow = [UIApplication sharedApplication].keyWindow;//[UIApplication sharedApplication].windows.lastObject;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     InputTextViewController *contentViewController = [[InputTextViewController alloc]initWithNibName:@"InputTextViewController" bundle:bundle];
@@ -414,7 +414,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 - (void) showSignView {
     [self closeSignView];
     
-    UIWindow *keyboardWindow = [UIApplication sharedApplication].windows.lastObject;
+    UIWindow *keyboardWindow = [UIApplication sharedApplication].keyWindow;//[UIApplication sharedApplication].windows.lastObject;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     SignViewController *contentViewController = [[SignViewController alloc]initWithNibName:@"SignViewController" bundle:bundle];
