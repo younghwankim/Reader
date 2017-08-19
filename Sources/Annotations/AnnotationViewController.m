@@ -13,6 +13,8 @@
 #import "SPUserResizableView.h"
 #import "UIView-JTViewToImage.h"
 #import "InputTextViewController.h"
+#import "InputTextViewController.h"
+#import "ESignViewController.h"
 
 NSString *const AnnotationViewControllerType_None = @"None";
 NSString *const AnnotationViewControllerType_Sign = @"Sign";
@@ -23,7 +25,7 @@ int const ANNOTATION_IMAGE_TAG = 431;
 CGFloat const TEXT_FIELD_WIDTH = 300;
 CGFloat const TEXT_FIELD_HEIGHT = 32;
 
-@interface AnnotationViewController () <SignViewDelegate, SPUserResizableViewDelegate, InputTextVCDelegate>
+@interface AnnotationViewController () <SignViewDelegate, SPUserResizableViewDelegate, InputTextVCDelegate, ESignViewDelegate>
 @property (nonatomic, retain) KWEPopoverController *wePopoverController;
 @end
 
@@ -410,8 +412,44 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 }
 
 #pragma mark SignView
-
 - (void) showSignView {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    ESignViewController *eSignVC = [[ESignViewController alloc]initWithNibName:@"ESignViewController" bundle:bundle];
+    eSignVC.esignDelegate = self;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        eSignVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    [self presentViewController:eSignVC animated:YES completion:nil];
+}
+
+- (void) closeESign {
+    
+}
+
+- (void) saveESign:(UIImage *)imgSign {
+    CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
+    
+    if(imgSign.size.width >300 || imgSign.size.height >300){
+        if(imgSign.size.width > imgSign.size.height) {
+            imgSign =[imgSign scaleImageToSize:CGSizeMake(300,(300 * imgSign.size.height / imgSign.size.width))];
+        } else {
+            imgSign =[imgSign scaleImageToSize:CGSizeMake((300 * imgSign.size.width/imgSign.size.height) ,300)];
+        }
+    }
+    
+    CGRect imageFrame = CGRectMake((visibleRect.origin.x < 0 ? 20 : visibleRect.origin.x + 20), (visibleRect.origin.y < 0 ? 100 : visibleRect.origin.y + 100), imgSign.size.width, imgSign.size.height);
+    
+    imageResizableView = [[SPUserResizableView alloc] initWithFrame:imageFrame];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:imgSign];
+    imageResizableView.contentView = imageView;
+    imageResizableView.delegate = self;
+    [imageResizableView removeFromSuperview];
+    [pageView addSubview:imageResizableView];
+}
+
+
+- (void) showOldSignView {
+    
     [self closeSignView];
     
     UIWindow *keyboardWindow = [UIApplication sharedApplication].keyWindow;//[UIApplication sharedApplication].windows.lastObject;
