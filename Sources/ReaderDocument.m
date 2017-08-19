@@ -26,6 +26,7 @@
 #import "ReaderDocument.h"
 #import "CGPDFDocument.h"
 #import <fcntl.h>
+#import "UIView+Toast.h"
 
 @interface ReaderDocument ()
 
@@ -365,6 +366,9 @@
 
 + (NSURL*) urlForAnnotatedDocument:(ReaderDocument *)document fileName:(NSString *)fileName
 {
+    UIWindow *keyboardWindow = [UIApplication sharedApplication].keyWindow;
+    
+    [keyboardWindow makeToastActivity:CSToastPositionCenter];
     CGPDFDocumentRef doc = CGPDFDocumentCreateUsingUrl((__bridge CFURLRef)document.fileURL, document.password);
     
     NSString *tempPath = [NSTemporaryDirectory() stringByAppendingString:fileName];
@@ -390,7 +394,7 @@
         //Annotations
         NSArray *annotations = [document.annotations annotationsForPage:i];
         if (annotations) {
-            NSLog(@"Writing %d annotations", [annotations count]);
+            NSLog(@"Writing %ld annotations", [annotations count]);
             //Flip back right-side up
             CGContextScaleCTM(context, 1.0, -1.0);
             CGContextTranslateCTM(context, 0, -bounds.size.height);
@@ -404,7 +408,7 @@
     UIGraphicsEndPDFContext();
     
     CGPDFDocumentRelease (doc);
-    
+    [keyboardWindow hideToastActivity];
     return [NSURL fileURLWithPath:tempPath];
 }
 

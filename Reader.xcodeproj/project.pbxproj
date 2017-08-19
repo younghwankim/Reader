@@ -66,6 +66,7 @@
 		196D4AF01F43CAD600697082 /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 196D4AED1F43CAD600697082 /* done.png */; };
 		196D4AF11F43CAD600697082 /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 196D4AEE1F43CAD600697082 /* done@2x.png */; };
 		196D4AF21F43CAD600697082 /* done@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 196D4AEF1F43CAD600697082 /* done@3x.png */; };
+		1980246E1F48D81500E6848C /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980246D1F48D81500E6848C /* UIView+Toast.m */; };
 		198207051F467C6E00D27253 /* bigfont_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207011F467C6E00D27253 /* bigfont_ipad.png */; };
 		198207061F467C6E00D27253 /* bold_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207021F467C6E00D27253 /* bold_ipad.png */; };
 		198207071F467C6E00D27253 /* italic_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207031F467C6E00D27253 /* italic_ipad.png */; };
@@ -199,6 +200,8 @@
 		196D4AED1F43CAD600697082 /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = done.png; path = Graphics/reader/done.png; sourceTree = "<group>"; };
 		196D4AEE1F43CAD600697082 /* done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done@2x.png"; path = "Graphics/reader/done@2x.png"; sourceTree = "<group>"; };
 		196D4AEF1F43CAD600697082 /* done@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done@3x.png"; path = "Graphics/reader/done@3x.png"; sourceTree = "<group>"; };
+		1980246C1F48D81500E6848C /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Toast.h"; path = "Sources/UIView+Toast.h"; sourceTree = "<group>"; };
+		1980246D1F48D81500E6848C /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Toast.m"; path = "Sources/UIView+Toast.m"; sourceTree = "<group>"; };
 		198207011F467C6E00D27253 /* bigfont_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigfont_ipad.png; path = Graphics/reader/bigfont_ipad.png; sourceTree = "<group>"; };
 		198207021F467C6E00D27253 /* bold_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bold_ipad.png; path = Graphics/reader/bold_ipad.png; sourceTree = "<group>"; };
 		198207031F467C6E00D27253 /* italic_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = italic_ipad.png; path = Graphics/reader/italic_ipad.png; sourceTree = "<group>"; };
@@ -534,6 +537,8 @@
 		45BD5A7C13AE6C3B00D6FE97 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1980246C1F48D81500E6848C /* UIView+Toast.h */,
+				1980246D1F48D81500E6848C /* UIView+Toast.m */,
 				8E56B55E1F43616D004E6431 /* Annotations */,
 				45AB72EF141FC0B1003524C3 /* ReaderConstants.h */,
 				45AB72F0141FC0B1003524C3 /* ReaderConstants.m */,
@@ -756,6 +761,7 @@
 				8E56B5671F436187004E6431 /* Annotation.m in Sources */,
 				45AB731A141FC0B1003524C3 /* ReaderMainToolbar.m in Sources */,
 				195C71251F47BE3100A4D8D9 /* UIView-JTViewToImage.m in Sources */,
+				1980246E1F48D81500E6848C /* UIView+Toast.m in Sources */,
 				198207231F468D4D00D27253 /* SPUserResizableView.m in Sources */,
 				45AB731C141FC0B1003524C3 /* ReaderThumbCache.m in Sources */,
 				198207221F468D4D00D27253 /* UIImage+Trim.m in Sources */,
