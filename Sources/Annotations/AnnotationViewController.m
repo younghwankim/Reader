@@ -150,7 +150,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
         if (!textField.hidden) {
             [textField resignFirstResponder];
-            return [TextAnnotation textAnnotationWithText:textField.text inRect:textField.frame withFont:textField.font];
+            return [TextAnnotation textAnnotationWithText:textField.text inRect:textField.frame withFont:textField.font withColor:textField.textColor];
         }
         return nil;
     }
@@ -360,7 +360,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     InputTextViewController *contentViewController = [[InputTextViewController alloc]initWithNibName:@"InputTextViewController" bundle:bundle];
     contentViewController.inputTextDelegate = self;
     
-    contentViewController.preferredContentSize = CGSizeMake(429,251);
+    contentViewController.preferredContentSize = CGSizeMake(429,342);
     
     CGFloat myScale = [self calculateScale];
     
@@ -376,7 +376,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     CGRect rcFrame;
     
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        rcFrame = CGRectMake(-20,100,0,30);
+        rcFrame = CGRectMake(-20,100,0,10);
     }else{
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         if(screenRect.size.width > screenRect.size.height){
@@ -419,6 +419,26 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     textField.layer.borderWidth = 1.0;
     textField.hidden = NO;
 }
+
+- (void) saveInputText:(NSString *)textString font:(UIFont*)currentFont color:(UIColor*)currentColor{
+    [self closeInputTextView];
+    
+    CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
+    
+    textField.font = currentFont;
+    textField.textColor = currentColor;
+    textField.text = textString;
+    
+    CGSize size = [textField sizeThatFits:CGSizeMake(250, CGFLOAT_MAX)];
+    
+    CGRect labelFrame = CGRectMake((visibleRect.origin.x < 0 ? 20 : visibleRect.origin.x + 20), (visibleRect.origin.y < 0 ? 100 : visibleRect.origin.y + 100), size.width, size.height);
+    textField.frame = labelFrame;
+    textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    textField.layer.borderWidth = 1.0;
+    textField.hidden = NO;
+}
+
+
 
 #pragma mark SignView
 - (void) showSignView {

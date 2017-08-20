@@ -39,12 +39,14 @@
 @synthesize text;
 @synthesize rect;
 @synthesize font;
+@synthesize color;
 
-+ (id) textAnnotationWithText:(NSString *)text inRect:(CGRect)rect withFont:(UIFont*)font {
++ (id) textAnnotationWithText:(NSString *)text inRect:(CGRect)rect withFont:(UIFont*)font withColor:(UIColor *)color{
     TextAnnotation *ta = [[TextAnnotation alloc] init];
     ta.text = text;
     ta.rect = rect;
     ta.font = font;
+    ta.color = color;
     return ta;
 }
 
@@ -52,8 +54,10 @@
     
     UIGraphicsPushContext(context);
 
-    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14]
-                                                                forKey:NSFontAttributeName];
+    NSDictionary *attrsDictionary = @{ NSFontAttributeName : self.font, NSForegroundColorAttributeName : self.color };
+    //[NSDictionary dictionaryWithObject:self.font forKey:NSFontAttributeName];
+    
+    
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.text attributes:attrsDictionary];
     [attrString drawAtPoint:CGPointMake(self.rect.origin.x, self.rect.origin.y)];
     UIGraphicsPopContext();

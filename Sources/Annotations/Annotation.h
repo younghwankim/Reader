@@ -25,8 +25,9 @@ typedef void (^CustomAnnotationDrawingBlock)(CGContextRef);
 @property NSString *text;
 @property CGRect rect;
 @property UIFont *font;
+@property UIColor *color;
 
-+ (id)textAnnotationWithText:(NSString*)text inRect:(CGRect)rect withFont:(UIFont*)font;
++ (id)textAnnotationWithText:(NSString*)text inRect:(CGRect)rect withFont:(UIFont*)font withColor:(UIColor *)color;
 @end
 
 @interface PathAnnotation: Annotation

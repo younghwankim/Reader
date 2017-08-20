@@ -394,7 +394,7 @@
         //Annotations
         NSArray *annotations = [document.annotations annotationsForPage:i];
         if (annotations) {
-            NSLog(@"Writing %ld annotations", [annotations count]);
+            //NSLog(@"Writing %ld annotations", [annotations count]);
             //Flip back right-side up
             CGContextScaleCTM(context, 1.0, -1.0);
             CGContextTranslateCTM(context, 0, -bounds.size.height);

@@ -84,7 +84,12 @@
 - (IBAction)cancelClicked:(UIButton *)sender {
     if(self.esignDelegate)
         [self.esignDelegate closeESign];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+        }
+    }];
 }
 
 - (IBAction)clearClicked:(UIButton *)sender {
