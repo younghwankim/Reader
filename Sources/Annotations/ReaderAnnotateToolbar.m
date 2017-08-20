@@ -53,8 +53,8 @@
 
         buttonH = nil; buttonN = nil;
 //#else
-		UIImage *imageH = [UIImage imageNamed:@"Reader-Button-H"];
-		UIImage *imageN = [UIImage imageNamed:@"Reader-Button-N"];
+		UIImage *imageH = [UIImage imageNamed:@"Reader-Button-H" inBundle:bundle compatibleWithTraitCollection:nil];
+		UIImage *imageN = [UIImage imageNamed:@"Reader-Button-N" inBundle:bundle compatibleWithTraitCollection:nil];
         
 		buttonHA = [imageH stretchableImageWithLeftCapWidth:5 topCapHeight:0];
 		buttonNA = [imageN stretchableImageWithLeftCapWidth:5 topCapHeight:0];
