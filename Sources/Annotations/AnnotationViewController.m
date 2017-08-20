@@ -46,6 +46,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     UILabel *textField;
     
     SPUserResizableView *imageResizableView;
+    BOOL isPopUpMode;
 }
 
 @dynamic annotationType;
@@ -82,6 +83,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 
     textField = [self createTextField];
     [pageView addSubview:textField];
+    isPopUpMode = NO;
 }
 
 
@@ -274,6 +276,8 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if(isPopUpMode)
+        return;
     UITouch *touch = [touches anyObject];
     lastPoint = [touch locationInView:pageView];
     
@@ -298,6 +302,9 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if(isPopUpMode)
+        return;
+    
     didMove = YES;
     UITouch *touch = [touches anyObject];
     CGPoint currentPoint = [touch locationInView:pageView];
@@ -317,7 +324,9 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    if(isPopUpMode)
+        return;
+    
     if ([self.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
         return;
     } else if ([self.annotationType isEqualToString:AnnotationViewControllerType_Sign]) {
@@ -413,6 +422,8 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 
 #pragma mark SignView
 - (void) showSignView {
+
+    isPopUpMode = YES;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     ESignViewController *eSignVC = [[ESignViewController alloc]initWithNibName:@"ESignViewController" bundle:bundle];
     eSignVC.esignDelegate = self;
@@ -423,10 +434,11 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 }
 
 - (void) closeESign {
-    
+    isPopUpMode = NO;
 }
 
 - (void) saveESign:(UIImage *)imgSign {
+    isPopUpMode = NO;
     CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
     
     if(imgSign.size.width >300 || imgSign.size.height >300){

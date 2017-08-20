@@ -69,6 +69,8 @@
 		1980246E1F48D81500E6848C /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980246D1F48D81500E6848C /* UIView+Toast.m */; };
 		198024721F48E18800E6848C /* ESignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198024701F48E18800E6848C /* ESignViewController.m */; };
 		198024731F48E18800E6848C /* ESignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198024711F48E18800E6848C /* ESignViewController.xib */; };
+		198024771F49071900E6848C /* textinput.png in Resources */ = {isa = PBXBuildFile; fileRef = 198024751F49071900E6848C /* textinput.png */; };
+		198024781F49071900E6848C /* textinput@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 198024761F49071900E6848C /* textinput@2x.png */; };
 		198207051F467C6E00D27253 /* bigfont_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207011F467C6E00D27253 /* bigfont_ipad.png */; };
 		198207061F467C6E00D27253 /* bold_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207021F467C6E00D27253 /* bold_ipad.png */; };
 		198207071F467C6E00D27253 /* italic_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207031F467C6E00D27253 /* italic_ipad.png */; };
@@ -207,6 +209,8 @@
 		1980246F1F48E18800E6848C /* ESignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESignViewController.h; path = Sources/Annotations/toolbar/ESignViewController.h; sourceTree = "<group>"; };
 		198024701F48E18800E6848C /* ESignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESignViewController.m; path = Sources/Annotations/toolbar/ESignViewController.m; sourceTree = "<group>"; };
 		198024711F48E18800E6848C /* ESignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ESignViewController.xib; path = Sources/Annotations/toolbar/ESignViewController.xib; sourceTree = "<group>"; };
+		198024751F49071900E6848C /* textinput.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = textinput.png; path = Graphics/reader/textinput.png; sourceTree = "<group>"; };
+		198024761F49071900E6848C /* textinput@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textinput@2x.png"; path = "Graphics/reader/textinput@2x.png"; sourceTree = "<group>"; };
 		198207011F467C6E00D27253 /* bigfont_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigfont_ipad.png; path = Graphics/reader/bigfont_ipad.png; sourceTree = "<group>"; };
 		198207021F467C6E00D27253 /* bold_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bold_ipad.png; path = Graphics/reader/bold_ipad.png; sourceTree = "<group>"; };
 		198207031F467C6E00D27253 /* italic_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = italic_ipad.png; path = Graphics/reader/italic_ipad.png; sourceTree = "<group>"; };
@@ -482,6 +486,8 @@
 		45943FC417FDCA3E003CC77A /* Reader */ = {
 			isa = PBXGroup;
 			children = (
+				198024751F49071900E6848C /* textinput.png */,
+				198024761F49071900E6848C /* textinput@2x.png */,
 				195C71191F47B6AB00A4D8D9 /* textpad@2x.png */,
 				195C711A1F47B6AB00A4D8D9 /* textpad.png */,
 				198207171F468A1C00D27253 /* close.png */,
@@ -674,6 +680,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198024781F49071900E6848C /* textinput@2x.png in Resources */,
 				4541A9D8122EA716001A5E60 /* Localizable.strings in Resources */,
 				4524A6EE1C500F2F00D7DF7F /* AppIcon-167.png in Resources */,
 				1927208A1F43C87D00DBF2C0 /* Reader-Button-N@2x.png in Resources */,
@@ -742,6 +749,7 @@
 				195C71181F47B63600A4D8D9 /* InputTextViewController.xib in Resources */,
 				1982071A1F468A1C00D27253 /* close@2x.png in Resources */,
 				195C711B1F47B6AB00A4D8D9 /* textpad@2x.png in Resources */,
+				198024771F49071900E6848C /* textinput.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

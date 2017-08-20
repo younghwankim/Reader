@@ -63,7 +63,6 @@
         [self enableLandscapeRotation:NO];
     }
     [super dismissViewControllerAnimated:flag completion:completion];
-    
 }
 
 
@@ -83,9 +82,9 @@
 }
 
 - (IBAction)cancelClicked:(UIButton *)sender {
+    if(self.esignDelegate)
+        [self.esignDelegate closeESign];
     [self dismissViewControllerAnimated:YES completion:nil];
-//    if(self.esignDelegate)
-//        [self.esignDelegate closeESign];
 }
 
 - (IBAction)clearClicked:(UIButton *)sender {
