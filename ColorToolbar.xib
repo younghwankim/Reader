@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ColorToolbar">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="color.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wt0-Cs-xOf">
+                    <rect key="frame" x="75" y="2" width="300" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="06R-x7-1Dg"/>
+                        <constraint firstAttribute="height" constant="40" id="qlR-hV-ckj"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6y-WK-uRT" userLabel="WhiteButton">
+                    <rect key="frame" x="75" y="0.0" width="48" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="ih7-gI-Q2z"/>
+                    </constraints>
+                    <connections>
+                        <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="kdw-pl-mh7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Py-83-B9T" userLabel="BlackButton">
+                    <rect key="frame" x="123" y="0.0" width="48" height="44"/>
+                    <connections>
+                        <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="0W3-Pz-Os2"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44T-4O-48b" userLabel="BlueButton">
+                    <rect key="frame" x="176" y="0.0" width="48" height="44"/>
+                    <connections>
+                        <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="GYx-C3-tSg"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gO-fE-40L" userLabel="GreenButton">
+                    <rect key="frame" x="226" y="0.0" width="48" height="44"/>
+                    <connections>
+                        <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="qmP-e8-6kY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T41-bR-1qQ" userLabel="YellowButton">
+                    <rect key="frame" x="280" y="0.0" width="48" height="44"/>
+                    <connections>
+                        <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="YIY-hE-xoA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-d9-Y3g" userLabel="RedButton">
+                    <rect key="frame" x="331" y="0.0" width="48" height="44"/>
+                    <state key="normal" image="wcheckmark.png"/>
+                    <connections>
+                        <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ora-oC-ncf"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="T41-bR-1qQ" firstAttribute="top" secondItem="6gO-fE-40L" secondAttribute="top" id="1vh-7A-mQW"/>
+                <constraint firstItem="d7M-d9-Y3g" firstAttribute="leading" secondItem="T41-bR-1qQ" secondAttribute="trailing" constant="3" id="23Y-T5-XPq"/>
+                <constraint firstItem="T41-bR-1qQ" firstAttribute="width" secondItem="6gO-fE-40L" secondAttribute="width" id="40F-SO-fxw"/>
+                <constraint firstItem="6gO-fE-40L" firstAttribute="height" secondItem="44T-4O-48b" secondAttribute="height" id="7im-Iq-54d"/>
+                <constraint firstItem="6gO-fE-40L" firstAttribute="top" secondItem="44T-4O-48b" secondAttribute="top" id="8h7-ZT-pjb"/>
+                <constraint firstItem="d7M-d9-Y3g" firstAttribute="top" secondItem="T41-bR-1qQ" secondAttribute="top" id="ARG-Dv-w5W"/>
+                <constraint firstItem="0Py-83-B9T" firstAttribute="top" secondItem="X6y-WK-uRT" secondAttribute="top" id="Ffa-pW-kQt"/>
+                <constraint firstItem="X6y-WK-uRT" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="G0m-tq-HuI"/>
+                <constraint firstItem="d7M-d9-Y3g" firstAttribute="height" secondItem="T41-bR-1qQ" secondAttribute="height" id="HMa-Ld-r0E"/>
+                <constraint firstItem="44T-4O-48b" firstAttribute="top" secondItem="0Py-83-B9T" secondAttribute="top" id="Khf-rs-HMQ"/>
+                <constraint firstItem="T41-bR-1qQ" firstAttribute="leading" secondItem="6gO-fE-40L" secondAttribute="trailing" constant="6" id="Kwo-xQ-kJa"/>
+                <constraint firstItem="X6y-WK-uRT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OWD-HB-I5d"/>
+                <constraint firstItem="44T-4O-48b" firstAttribute="leading" secondItem="0Py-83-B9T" secondAttribute="trailing" constant="5" id="Sep-n5-Sna"/>
+                <constraint firstItem="44T-4O-48b" firstAttribute="height" secondItem="0Py-83-B9T" secondAttribute="height" id="WXj-2O-jzZ"/>
+                <constraint firstItem="44T-4O-48b" firstAttribute="width" secondItem="0Py-83-B9T" secondAttribute="width" id="cdB-gc-XRc"/>
+                <constraint firstItem="Wt0-Cs-xOf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="fBx-SX-VjO"/>
+                <constraint firstItem="0Py-83-B9T" firstAttribute="leading" secondItem="X6y-WK-uRT" secondAttribute="trailing" id="hCC-la-DVO"/>
+                <constraint firstItem="Wt0-Cs-xOf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hRQ-4k-JRM"/>
+                <constraint firstItem="T41-bR-1qQ" firstAttribute="height" secondItem="6gO-fE-40L" secondAttribute="height" id="iLV-fr-YAj"/>
+                <constraint firstItem="6gO-fE-40L" firstAttribute="leading" secondItem="44T-4O-48b" secondAttribute="trailing" constant="2" id="kcN-2M-jPw"/>
+                <constraint firstItem="0Py-83-B9T" firstAttribute="height" secondItem="X6y-WK-uRT" secondAttribute="height" id="rKh-hK-c4S"/>
+                <constraint firstItem="0Py-83-B9T" firstAttribute="width" secondItem="X6y-WK-uRT" secondAttribute="width" id="tPL-zi-Wr8"/>
+                <constraint firstItem="X6y-WK-uRT" firstAttribute="leading" secondItem="Wt0-Cs-xOf" secondAttribute="leading" id="uYc-EE-Rb0"/>
+                <constraint firstItem="d7M-d9-Y3g" firstAttribute="width" secondItem="T41-bR-1qQ" secondAttribute="width" id="yvL-Uw-74q"/>
+                <constraint firstItem="6gO-fE-40L" firstAttribute="width" secondItem="44T-4O-48b" secondAttribute="width" id="zTh-i4-lUb"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="blackButton" destination="0Py-83-B9T" id="KOf-Td-rvP"/>
+                <outlet property="blueButton" destination="44T-4O-48b" id="CzR-JH-52F"/>
+                <outlet property="greenButton" destination="6gO-fE-40L" id="8bh-3P-tw6"/>
+                <outlet property="redButton" destination="d7M-d9-Y3g" id="ymg-ci-VFN"/>
+                <outlet property="whiteButton" destination="X6y-WK-uRT" id="rdJ-zw-v1h"/>
+                <outlet property="yellowButton" destination="T41-bR-1qQ" id="oKa-Hw-HFu"/>
+            </connections>
+            <point key="canvasLocation" x="-118" y="-129"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="color.png" width="300" height="40"/>
+        <image name="wcheckmark.png" width="30" height="29"/>
+    </resources>
+</document>

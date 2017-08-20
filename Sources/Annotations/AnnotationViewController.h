@@ -43,5 +43,5 @@ extern NSString *const AnnotationViewControllerType_Text;
 - (void) closeSignView;
 
 - (AnnotationStore*) annotations;
-
+- (void) setCurrentPenColor:(UIColor *)penColor;
 @end

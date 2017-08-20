@@ -291,7 +291,7 @@
 	if (thePDFDocRef != NULL) // Get the total number of pages in the document
 	{
 		NSInteger pageCount = CGPDFDocumentGetNumberOfPages(thePDFDocRef);
-        _annotations = [[AnnotationStore alloc] initWithPageCount:pageCount];
+        _annotations = [[AnnotationStore alloc] initWithPageCount:(int)pageCount];
 		_pageCount = [NSNumber numberWithInteger:pageCount];
 
 		CGPDFDocumentRelease(thePDFDocRef); // Cleanup

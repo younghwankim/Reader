@@ -33,11 +33,11 @@
 #import "ReaderThumbQueue.h"
 
 #import "ReaderAnnotateToolbar.h"
-
+#import "ColorToolbar.h"
 #import <MessageUI/MessageUI.h>
 
 @interface ReaderViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate,
-									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate>
+									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate, ColorToolbarDelegate>
 @end
 
 @implementation ReaderViewController
@@ -69,6 +69,7 @@
 	BOOL ignoreDidScroll;
     
     ReaderAnnotateToolbar *annotateToolbar;
+    ColorToolbar *colorToolbar;
 }
 
 #pragma mark - Constants
@@ -382,6 +383,15 @@
     mainPagebar.delegate = self; // ReaderMainPagebarDelegate
     [self.view addSubview:mainPagebar];
 
+
+    colorToolbar = (ColorToolbar *)[self createFromNib:@"ColorToolbar"];
+    if(colorToolbar) {
+        colorToolbar.frame = pagebarRect;
+        colorToolbar.hidden = YES;
+        colorToolbar.colorDelegate = self;
+        [self.view addSubview:colorToolbar];
+    }
+    
 	if (fakeStatusBar != nil) [self.view addSubview:fakeStatusBar]; // Add status bar background view
 
 	UITapGestureRecognizer *singleTapOne = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -1015,6 +1025,9 @@
 
 - (void)tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar signButton:(UIButton *)button
 {
+    [mainPagebar showPagebar];
+    colorToolbar.hidden = YES;
+    
     if ([self.annotationController.annotationType isEqualToString:AnnotationViewControllerType_Sign]) {
         [self setAnnotationMode:AnnotationViewControllerType_None];
     } else {
@@ -1024,6 +1037,9 @@
 
 - (void)tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar redPenButton:(UIButton *)button
 {
+    [mainPagebar hidePagebar];
+    colorToolbar.hidden = NO;
+    
     if ([self.annotationController.annotationType isEqualToString:AnnotationViewControllerType_RedPen]) {
         [self setAnnotationMode:AnnotationViewControllerType_None];
     } else {
@@ -1033,6 +1049,9 @@
 
 - (void)tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar textButton:(UIButton *)button
 {
+    [mainPagebar showPagebar];
+    colorToolbar.hidden = YES;
+    
     if ([self.annotationController.annotationType isEqualToString:AnnotationViewControllerType_Text]) {
         [self setAnnotationMode:AnnotationViewControllerType_None];
     } else {
@@ -1041,14 +1060,24 @@
 }
 
 - (void) tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar cancelButton:(UIButton *)button {
+    
+    [mainPagebar showPagebar];
+    colorToolbar.hidden = YES;
+    
     [self cancelAnnotation];
     }
 
 - (void) tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar doneButton:(UIButton *)button {
+    [mainPagebar showPagebar];
+    colorToolbar.hidden = YES;
+    
     [self finishAnnotation];
 }
 
 - (void)tappedInAnnotateToolbar:(ReaderAnnotateToolbar *)toolbar undoButton:(UIButton *)button {
+    [mainPagebar showPagebar];
+    colorToolbar.hidden = YES;
+    
     [self.annotationController undo];
 }
 
@@ -1102,5 +1131,22 @@
 //    }
 }
 
+- (UIView *)createFromNib:(NSString *)nibName {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSArray *viewArray = [bundle loadNibNamed:nibName owner:self options:nil];
+    if (viewArray.count) {
+        return viewArray[0];
+    } else {
+        return nil;
+    }
+}
+
+#pragma mark ColorToolbarDelegate
+
+- (void) checkedColor:(UIColor *)color {
+    if(self.annotationController){
+        [self.annotationController setCurrentPenColor:color];
+    }
+}
 
 @end

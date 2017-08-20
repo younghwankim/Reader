@@ -448,7 +448,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     ESignViewController *eSignVC = [[ESignViewController alloc]initWithNibName:@"ESignViewController" bundle:bundle];
     eSignVC.esignDelegate = self;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        eSignVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        eSignVC.modalPresentationStyle = UIModalPresentationPageSheet;
     }
     [self presentViewController:eSignVC animated:YES completion:nil];
 }
@@ -584,6 +584,10 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     } else {
         return 1.0;
     }
+}
+
+- (void) setCurrentPenColor:(UIColor *)penColor {
+    annotationColor = penColor.CGColor;
 }
 
 @end
