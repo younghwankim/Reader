@@ -13,8 +13,16 @@
 }
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *fontSizeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (weak, nonatomic) IBOutlet UIView *colorStatus;
+
+@property (weak, nonatomic) IBOutlet UIButton *boldButton;
+@property (weak, nonatomic) IBOutlet UIButton *italicButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *whiteButton;
+@property (weak, nonatomic) IBOutlet UIButton *blackButton;
+@property (weak, nonatomic) IBOutlet UIButton *blueButton;
+@property (weak, nonatomic) IBOutlet UIButton *greenButton;
+@property (weak, nonatomic) IBOutlet UIButton *yellowButton;
+@property (weak, nonatomic) IBOutlet UIButton *redButton;
 
 @end
 
@@ -47,24 +55,24 @@
 }
 
 - (void) updateStatusLabel {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    
+    UIImage *whiteImage = [UIImage imageNamed:@"wcheckmark" inBundle:bundle compatibleWithTraitCollection:nil];
+    UIImage *blackImage = [UIImage imageNamed:@"bcheckmark" inBundle:bundle compatibleWithTraitCollection:nil];
+    
     self.fontSizeLabel.text = [NSString stringWithFormat:@"%d", self.fontSize];
-    NSString *strFont;
     NSString *strFontName;
 
     if(self.isBold){
         if(self.isItalic){
-            strFont = @"Italic Bold";
             strFontName = @"HelveticaNeue-BoldItalic";
         }else{
-            strFont = @"Bold";
             strFontName = @"HelveticaNeue-Bold";
         }
     }else{
         if(self.isItalic){
-            strFont = @"Italic";
             strFontName = @"HelveticaNeue-Italic";
         }else{
-            strFont = @"Regular";
             strFontName = @"HelveticaNeue";
         }
     }
@@ -72,29 +80,61 @@
     
     if(self.fontColor == 0){
         self.currentColor = [UIColor blackColor];
+        [self.whiteButton setImage:nil forState:UIControlStateNormal];
+        [self.blackButton setImage:whiteImage forState:UIControlStateNormal];
+        [self.blueButton setImage:nil forState:UIControlStateNormal];
+        [self.greenButton setImage:nil forState:UIControlStateNormal];
+        [self.yellowButton setImage:nil forState:UIControlStateNormal];
+        [self.redButton setImage:nil forState:UIControlStateNormal];
     }else if(self.fontColor == 1){
         self.currentColor = [UIColor whiteColor];
+        [self.whiteButton setImage:blackImage forState:UIControlStateNormal];
+        [self.blackButton setImage:nil forState:UIControlStateNormal];
+        [self.blueButton setImage:nil forState:UIControlStateNormal];
+        [self.greenButton setImage:nil forState:UIControlStateNormal];
+        [self.yellowButton setImage:nil forState:UIControlStateNormal];
+        [self.redButton setImage:nil forState:UIControlStateNormal];
     }else if(self.fontColor == 2){
         self.currentColor = [UIColor blueColor];
+        [self.whiteButton setImage:nil forState:UIControlStateNormal];
+        [self.blackButton setImage:nil forState:UIControlStateNormal];
+        [self.blueButton setImage:whiteImage forState:UIControlStateNormal];
+        [self.greenButton setImage:nil forState:UIControlStateNormal];
+        [self.yellowButton setImage:nil forState:UIControlStateNormal];
+        [self.redButton setImage:nil forState:UIControlStateNormal];
     }else if(self.fontColor == 3){
         self.currentColor = [UIColor greenColor];
+        [self.whiteButton setImage:nil forState:UIControlStateNormal];
+        [self.blackButton setImage:nil forState:UIControlStateNormal];
+        [self.blueButton setImage:nil forState:UIControlStateNormal];
+        [self.greenButton setImage:whiteImage forState:UIControlStateNormal];
+        [self.yellowButton setImage:nil forState:UIControlStateNormal];
+        [self.redButton setImage:nil forState:UIControlStateNormal];
     }else if(self.fontColor == 4){
         self.currentColor = [UIColor yellowColor];
+        [self.whiteButton setImage:nil forState:UIControlStateNormal];
+        [self.blackButton setImage:nil forState:UIControlStateNormal];
+        [self.blueButton setImage:nil forState:UIControlStateNormal];
+        [self.greenButton setImage:nil forState:UIControlStateNormal];
+        [self.yellowButton setImage:blackImage forState:UIControlStateNormal];
+        [self.redButton setImage:nil forState:UIControlStateNormal];
     }else if(self.fontColor == 5){
         self.currentColor = [UIColor redColor];
+        [self.whiteButton setImage:nil forState:UIControlStateNormal];
+        [self.blackButton setImage:nil forState:UIControlStateNormal];
+        [self.blueButton setImage:nil forState:UIControlStateNormal];
+        [self.greenButton setImage:nil forState:UIControlStateNormal];
+        [self.yellowButton setImage:nil forState:UIControlStateNormal];
+        [self.redButton setImage:whiteImage forState:UIControlStateNormal];
     }
     if(self.fontColor == 1 || self.fontColor == 4) {
         self.textView.backgroundColor = [UIColor grayColor];
     } else {
         self.textView.backgroundColor = [UIColor whiteColor];
     }
-    self.colorStatus.backgroundColor = self.currentColor;
-    self.statusLabel.text = [NSString stringWithFormat:@"%@ - %d",strFont,self.fontSize];
-    
 
     self.textView.textColor = self.currentColor;
     self.textView.font = self.currentFont;
-
 }
 
 - (IBAction)saveClicked:(UIButton *)sender {
@@ -149,17 +189,36 @@
 }
 
 - (IBAction)boldClicked:(UIButton *)sender {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    
+    UIImage *boldOffImage = [UIImage imageNamed:@"bold_off" inBundle:bundle compatibleWithTraitCollection:nil];
+    UIImage *boldOnImage = [UIImage imageNamed:@"bold_on" inBundle:bundle compatibleWithTraitCollection:nil];
     self.isBold = !self.isBold;
+    
+    if(self.isBold)
+        [self.boldButton setImage:boldOnImage forState:UIControlStateNormal];
+    else
+        [self.boldButton setImage:boldOffImage forState:UIControlStateNormal];
+    
     [self updateStatusLabel];
 }
 
 - (IBAction)italicClicked:(UIButton *)sender {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    
+    UIImage *italicOffImage = [UIImage imageNamed:@"italic_off" inBundle:bundle compatibleWithTraitCollection:nil];
+    UIImage *italicOnImage = [UIImage imageNamed:@"italic_on" inBundle:bundle compatibleWithTraitCollection:nil];
     self.isItalic = !self.isItalic;
+    
+    if(self.isItalic)
+        [self.italicButton setImage:italicOnImage forState:UIControlStateNormal];
+    else
+        [self.italicButton setImage:italicOffImage forState:UIControlStateNormal];
     [self updateStatusLabel];
 }
 
 - (IBAction)colorClicked:(UIButton *)sender {
-    self.fontColor = sender.tag;
+    self.fontColor = (int)sender.tag;
     [self updateStatusLabel];
 }
 

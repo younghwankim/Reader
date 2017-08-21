@@ -8,7 +8,6 @@
 
 #import "AnnotationViewController.h"
 #import "KWEPopoverController.h"
-#import "SignViewController.h"
 #import "UIImage+Trim.h"
 #import "SPUserResizableView.h"
 #import "UIView-JTViewToImage.h"
@@ -25,7 +24,7 @@ int const ANNOTATION_IMAGE_TAG = 431;
 CGFloat const TEXT_FIELD_WIDTH = 300;
 CGFloat const TEXT_FIELD_HEIGHT = 32;
 
-@interface AnnotationViewController () <SignViewDelegate, SPUserResizableViewDelegate, InputTextVCDelegate, ESignViewDelegate>
+@interface AnnotationViewController () <SPUserResizableViewDelegate, InputTextVCDelegate>
 @property (nonatomic, retain) KWEPopoverController *wePopoverController;
 @end
 
@@ -438,23 +437,17 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     textField.hidden = NO;
 }
 
-
-
 #pragma mark SignView
 - (void) showSignView {
-
     isPopUpMode = YES;
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    ESignViewController *eSignVC = [[ESignViewController alloc]initWithNibName:@"ESignViewController" bundle:bundle];
-    eSignVC.esignDelegate = self;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        eSignVC.modalPresentationStyle = UIModalPresentationPageSheet;
-    }
-    [self presentViewController:eSignVC animated:YES completion:nil];
+
 }
 
 - (void) closeESign {
     isPopUpMode = NO;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+    }
 }
 
 - (void) saveESign:(UIImage *)imgSign {
@@ -477,79 +470,11 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     imageResizableView.delegate = self;
     [imageResizableView removeFromSuperview];
     [pageView addSubview:imageResizableView];
-}
-
-
-- (void) showOldSignView {
-    
-    [self closeSignView];
-    
-    UIWindow *keyboardWindow = [UIApplication sharedApplication].keyWindow;//[UIApplication sharedApplication].windows.lastObject;
-    
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    SignViewController *contentViewController = [[SignViewController alloc]initWithNibName:@"SignViewController" bundle:bundle];
-    contentViewController.signDelegate = self;
-    
-    contentViewController.preferredContentSize = CGSizeMake(432,250);
-    
-    CGFloat myScale = [self calculateScale];
-    
-    self.wePopoverController = [[KWEPopoverController alloc] initWithContentViewController:contentViewController] ;
-    self.wePopoverController.popoverContentSize = CGSizeMake(contentViewController.view.frame.size.width*myScale, contentViewController.view.frame.size.height*myScale);
-    
-    if(myScale < 1.0) {
-        CGAffineTransform transform = contentViewController.view.transform;
-        transform = CGAffineTransformScale(transform,  myScale,myScale);
-        contentViewController.view.transform = transform;
-    }
-    
-    CGRect rcFrame;
-    
-    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        rcFrame = CGRectMake(-20,100,0,30);
-    }else{
-        CGRect screenRect = [[UIScreen mainScreen] bounds];
-        rcFrame = CGRectMake(screenRect.size.width/2,200,20,30);
-    }
-    
-    [self.wePopoverController presentPopoverFromRect:rcFrame
-                                              inView:keyboardWindow
-                            permittedArrowDirections:UIPopoverArrowDirectionUp
-                                            animated:YES];
-}
-
--(void) closeSignView {
-    if (self.wePopoverController != nil && self.wePopoverController.popoverVisible) {
-        [self.wePopoverController dismissPopoverAnimated:YES];
-        self.wePopoverController = nil;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
     }
 }
 
-#pragma mark SignViewDelegate
-- (void) closeSign
-{
-    [self closeSignView];
-}
-
-- (void) saveSign:(UIImage *)imgSign
-{
-    [self closeSignView];
-    
-    CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
-    
-    if(imgSign.size.width >300 || imgSign.size.height >300){
-        imgSign =[imgSign scaleImageToSize:CGSizeMake(300,300)];
-    }
-    
-    CGRect imageFrame = CGRectMake((visibleRect.origin.x < 0 ? 20 : visibleRect.origin.x + 20), (visibleRect.origin.y < 0 ? 100 : visibleRect.origin.y + 100), imgSign.size.width, imgSign.size.height);
-    
-    imageResizableView = [[SPUserResizableView alloc] initWithFrame:imageFrame];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:imgSign];
-    imageResizableView.contentView = imageView;
-    imageResizableView.delegate = self;
-    [imageResizableView removeFromSuperview];
-    [pageView addSubview:imageResizableView];
-}
 
 #pragma mark SPUserResizableViewDelegate
 

@@ -35,9 +35,10 @@
 #import "ReaderAnnotateToolbar.h"
 #import "ColorToolbar.h"
 #import <MessageUI/MessageUI.h>
+#import "ESignViewController.h"
 
 @interface ReaderViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate,
-									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate, ColorToolbarDelegate>
+									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate, ColorToolbarDelegate, ESignViewDelegate>
 @end
 
 @implementation ReaderViewController
@@ -1010,7 +1011,7 @@
     [annotateToolbar setTextButtonState:NO];
     
     if ([mode isEqualToString:AnnotationViewControllerType_Sign]) {
-        [self.annotationController showSignView];
+        [self showSignView];
         [annotateToolbar setSignButtonState:YES];
     } else if ([mode isEqualToString:AnnotationViewControllerType_RedPen]) {
         [annotateToolbar setRedPenButtonState:YES];
@@ -1146,6 +1147,40 @@
 - (void) checkedColor:(UIColor *)color {
     if(self.annotationController){
         [self.annotationController setCurrentPenColor:color];
+    }
+}
+
+#pragma mark ESignView
+
+- (void) showSignView {
+    if(self.annotationController){
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+        }
+        [self.annotationController showSignView];
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        ESignViewController *eSignVC = [[ESignViewController alloc]initWithNibName:@"ESignViewController" bundle:bundle];
+        eSignVC.esignDelegate = self;
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            eSignVC.modalPresentationStyle = UIModalPresentationPageSheet;
+        }
+        [self presentViewController:eSignVC animated:YES completion:nil];
+    }
+}
+
+
+#pragma mark ESignViewDelegate
+- (void) closeESign {
+    if(self.annotationController){
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.annotationController closeESign];
+    }
+}
+
+- (void) saveESign:(UIImage *)imgSign {
+    if(self.annotationController){
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.annotationController saveESign:imgSign];
     }
 }
 

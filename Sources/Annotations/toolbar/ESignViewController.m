@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self enableLandscapeRotation:YES];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -33,42 +32,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)enableLandscapeRotation: (BOOL)enable {
-    
-    if (!enable && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
-    }
-}
-
-- (BOOL)shouldAutorotate {
-    return YES;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationLandscapeRight;
-    }else{
-        return [[UIApplication sharedApplication] statusBarOrientation];
-    }
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskLandscape;
-    }else {
-        return UIInterfaceOrientationMaskAll;
-    }
-}
-
-- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
-{
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        [self enableLandscapeRotation:NO];
-    }
-    [super dismissViewControllerAnimated:flag completion:completion];
 }
 
 
@@ -90,12 +53,6 @@
 - (IBAction)cancelClicked:(UIButton *)sender {
     if(self.esignDelegate)
         [self.esignDelegate closeESign];
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
-        }
-    }];
 }
 
 - (IBAction)clearClicked:(UIButton *)sender {
@@ -122,7 +79,6 @@
         if(self.esignDelegate)
             [self.esignDelegate saveESign:imgSign];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

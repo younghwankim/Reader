@@ -39,9 +39,11 @@ extern NSString *const AnnotationViewControllerType_Text;
 - (void) showInputTextView;
 - (void) closeInputTextView;
 
-- (void) showSignView;
-- (void) closeSignView;
 
 - (AnnotationStore*) annotations;
 - (void) setCurrentPenColor:(UIColor *)penColor;
+
+- (void) showSignView;
+- (void) saveESign:(UIImage *)imgSign;
+- (void) closeESign;
 @end
