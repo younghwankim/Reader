@@ -15,6 +15,8 @@
 #import "InputTextViewController.h"
 #import "ESignViewController.h"
 
+#import "ReaderContentPage.h"
+
 NSString *const AnnotationViewControllerType_None = @"None";
 NSString *const AnnotationViewControllerType_Sign = @"Sign";
 NSString *const AnnotationViewControllerType_RedPen = @"RedPen";
@@ -31,7 +33,8 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 @implementation AnnotationViewController {
     CGPoint lastPoint;
     UIImageView *image;
-    UIView *pageView;
+    ReaderContentPage *pageView;
+    ReaderContentView *contentView;
     CGColorRef annotationColor;
     CGColorRef signColor;
     NSString *_annotationType;
@@ -182,6 +185,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
         
         self.currentPage = page;
         
+        contentView = view;
         pageView = [view pageView];
         //Create a new one because the old one may be deallocated or have a deallocated parent
         //First, erase any contents though
@@ -406,13 +410,14 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 - (void) saveInputText:(NSString *)textString {
     [self closeInputTextView];
     
-    CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
+    CGRect visibleRect = [contentView convertRect:contentView.bounds toView:pageView];
     
     textField.text = textString;
     
     CGSize size = [textField sizeThatFits:CGSizeMake(250, CGFLOAT_MAX)];
     
-    CGRect labelFrame = CGRectMake((visibleRect.origin.x < 0 ? 20 : visibleRect.origin.x + 20), (visibleRect.origin.y < 0 ? 100 : visibleRect.origin.y + 100), size.width, size.height);
+    CGPoint centerInVisualRect = CGPointMake(visibleRect.origin.x + visibleRect.size.width / 2.0, visibleRect.origin.y + visibleRect.size.height / 2.0);
+    CGRect labelFrame = CGRectMake(centerInVisualRect.x - size.width / 2.0, centerInVisualRect.y - size.height / 2.0, size.width, size.height);
     textField.frame = labelFrame;
     textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     textField.layer.borderWidth = 1.0;
@@ -422,7 +427,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 - (void) saveInputText:(NSString *)textString font:(UIFont*)currentFont color:(UIColor*)currentColor{
     [self closeInputTextView];
     
-    CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
+    CGRect visibleRect = [contentView convertRect:contentView.bounds toView:pageView];
     
     textField.font = currentFont;
     textField.textColor = currentColor;
@@ -430,7 +435,8 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     
     CGSize size = [textField sizeThatFits:CGSizeMake(250, CGFLOAT_MAX)];
     
-    CGRect labelFrame = CGRectMake((visibleRect.origin.x < 0 ? 20 : visibleRect.origin.x + 20), (visibleRect.origin.y < 0 ? 100 : visibleRect.origin.y + 100), size.width, size.height);
+    CGPoint centerInVisualRect = CGPointMake(visibleRect.origin.x + visibleRect.size.width / 2.0, visibleRect.origin.y + visibleRect.size.height / 2.0);
+    CGRect labelFrame = CGRectMake(centerInVisualRect.x - size.width / 2.0, centerInVisualRect.y - size.height / 2.0, size.width, size.height);
     textField.frame = labelFrame;
     textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     textField.layer.borderWidth = 1.0;
@@ -445,14 +451,12 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 
 - (void) closeESign {
     isPopUpMode = NO;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
-    }
 }
 
 - (void) saveESign:(UIImage *)imgSign {
     isPopUpMode = NO;
-    CGRect visibleRect = [self.view convertRect:pageView.bounds toView:pageView];
+    
+    CGRect visibleRect = [contentView convertRect:contentView.bounds toView:pageView];
     
     if(imgSign.size.width >300 || imgSign.size.height >300){
         if(imgSign.size.width > imgSign.size.height) {
@@ -462,7 +466,9 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
         }
     }
     
-    CGRect imageFrame = CGRectMake((visibleRect.origin.x < 0 ? 20 : visibleRect.origin.x + 20), (visibleRect.origin.y < 0 ? 100 : visibleRect.origin.y + 100), imgSign.size.width, imgSign.size.height);
+    
+    CGPoint centerInVisualRect = CGPointMake(visibleRect.origin.x + visibleRect.size.width / 2.0, visibleRect.origin.y + visibleRect.size.height / 2.0);
+    CGRect imageFrame = CGRectMake(centerInVisualRect.x - imgSign.size.width / 2.0, centerInVisualRect.y - imgSign.size.height / 2.0, imgSign.size.width, imgSign.size.height);
     
     imageResizableView = [[SPUserResizableView alloc] initWithFrame:imageFrame];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:imgSign];
@@ -470,9 +476,6 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     imageResizableView.delegate = self;
     [imageResizableView removeFromSuperview];
     [pageView addSubview:imageResizableView];
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
-    }
 }
 
 

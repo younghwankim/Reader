@@ -382,7 +382,7 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 
 
 #pragma mark Test methods
-- (UIView*)pageView {
+- (ReaderContentPage*)pageView {
     return theContentPage;
 }
 

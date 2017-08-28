@@ -28,6 +28,7 @@
 #import "ThumbsViewController.h"
 #import "ReaderMainToolbar.h"
 #import "ReaderMainPagebar.h"
+#import "ReaderContentPage.h"
 #import "ReaderContentView.h"
 #import "ReaderThumbCache.h"
 #import "ReaderThumbQueue.h"
@@ -1173,6 +1174,9 @@
 - (void) closeESign {
     if(self.annotationController){
         [self dismissViewControllerAnimated:YES completion:nil];
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+        }
         [self.annotationController closeESign];
     }
 }
@@ -1180,7 +1184,14 @@
 - (void) saveESign:(UIImage *)imgSign {
     if(self.annotationController){
         [self dismissViewControllerAnimated:YES completion:nil];
-        [self.annotationController saveESign:imgSign];
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIInterfaceOrientationPortrait] forKey:@"orientation"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.annotationController saveESign:imgSign];
+            });
+        }else{
+            [self.annotationController saveESign:imgSign];
+        }
     }
 }
 

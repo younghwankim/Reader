@@ -53,7 +53,7 @@
 - (void)zoomIncrement:(UITapGestureRecognizer *)recognizer;
 - (void)zoomDecrement:(UITapGestureRecognizer *)recognizer;
 - (void)zoomResetAnimated:(BOOL)animated;
-- (UIView*)pageView ;
+- (ReaderContentPage*)pageView ;
 @end
 
 #pragma mark -
