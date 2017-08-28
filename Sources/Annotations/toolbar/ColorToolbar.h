@@ -17,4 +17,5 @@
 
 @interface ColorToolbar : UIXToolbarView
 @property (nonatomic, weak) id<ColorToolbarDelegate> colorDelegate;
+@property (nonatomic, weak) IBOutlet UIImageView *imgView;
 @end

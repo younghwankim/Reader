@@ -23,40 +23,41 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6y-WK-uRT" userLabel="WhiteButton">
-                    <rect key="frame" x="75" y="0.0" width="48" height="44"/>
+                    <rect key="frame" x="75" y="2" width="48" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="ih7-gI-Q2z"/>
+                        <constraint firstAttribute="height" constant="34" id="j7z-uc-yU2"/>
                     </constraints>
                     <connections>
                         <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="kdw-pl-mh7"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Py-83-B9T" userLabel="BlackButton">
-                    <rect key="frame" x="123" y="0.0" width="48" height="44"/>
+                    <rect key="frame" x="123" y="2" width="48" height="34"/>
                     <connections>
                         <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="0W3-Pz-Os2"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44T-4O-48b" userLabel="BlueButton">
-                    <rect key="frame" x="176" y="0.0" width="48" height="44"/>
+                    <rect key="frame" x="176" y="2" width="48" height="34"/>
                     <connections>
                         <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="GYx-C3-tSg"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gO-fE-40L" userLabel="GreenButton">
-                    <rect key="frame" x="226" y="0.0" width="48" height="44"/>
+                    <rect key="frame" x="226" y="2" width="48" height="34"/>
                     <connections>
                         <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="qmP-e8-6kY"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T41-bR-1qQ" userLabel="YellowButton">
-                    <rect key="frame" x="280" y="0.0" width="48" height="44"/>
+                    <rect key="frame" x="280" y="2" width="48" height="34"/>
                     <connections>
                         <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="YIY-hE-xoA"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-d9-Y3g" userLabel="RedButton">
-                    <rect key="frame" x="331" y="0.0" width="48" height="44"/>
+                    <rect key="frame" x="331" y="2" width="48" height="34"/>
                     <state key="normal" image="wcheckmark.png"/>
                     <connections>
                         <action selector="colorClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ora-oC-ncf"/>
@@ -72,15 +73,14 @@
                 <constraint firstItem="6gO-fE-40L" firstAttribute="top" secondItem="44T-4O-48b" secondAttribute="top" id="8h7-ZT-pjb"/>
                 <constraint firstItem="d7M-d9-Y3g" firstAttribute="top" secondItem="T41-bR-1qQ" secondAttribute="top" id="ARG-Dv-w5W"/>
                 <constraint firstItem="0Py-83-B9T" firstAttribute="top" secondItem="X6y-WK-uRT" secondAttribute="top" id="Ffa-pW-kQt"/>
-                <constraint firstItem="X6y-WK-uRT" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="G0m-tq-HuI"/>
                 <constraint firstItem="d7M-d9-Y3g" firstAttribute="height" secondItem="T41-bR-1qQ" secondAttribute="height" id="HMa-Ld-r0E"/>
                 <constraint firstItem="44T-4O-48b" firstAttribute="top" secondItem="0Py-83-B9T" secondAttribute="top" id="Khf-rs-HMQ"/>
                 <constraint firstItem="T41-bR-1qQ" firstAttribute="leading" secondItem="6gO-fE-40L" secondAttribute="trailing" constant="6" id="Kwo-xQ-kJa"/>
-                <constraint firstItem="X6y-WK-uRT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OWD-HB-I5d"/>
+                <constraint firstItem="X6y-WK-uRT" firstAttribute="top" secondItem="Wt0-Cs-xOf" secondAttribute="top" id="Npw-ca-ubc"/>
                 <constraint firstItem="44T-4O-48b" firstAttribute="leading" secondItem="0Py-83-B9T" secondAttribute="trailing" constant="5" id="Sep-n5-Sna"/>
                 <constraint firstItem="44T-4O-48b" firstAttribute="height" secondItem="0Py-83-B9T" secondAttribute="height" id="WXj-2O-jzZ"/>
                 <constraint firstItem="44T-4O-48b" firstAttribute="width" secondItem="0Py-83-B9T" secondAttribute="width" id="cdB-gc-XRc"/>
-                <constraint firstItem="Wt0-Cs-xOf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="fBx-SX-VjO"/>
+                <constraint firstItem="Wt0-Cs-xOf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="dVv-zW-WzI"/>
                 <constraint firstItem="0Py-83-B9T" firstAttribute="leading" secondItem="X6y-WK-uRT" secondAttribute="trailing" id="hCC-la-DVO"/>
                 <constraint firstItem="Wt0-Cs-xOf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hRQ-4k-JRM"/>
                 <constraint firstItem="T41-bR-1qQ" firstAttribute="height" secondItem="6gO-fE-40L" secondAttribute="height" id="iLV-fr-YAj"/>
@@ -99,6 +99,7 @@
                 <outlet property="blackButton" destination="0Py-83-B9T" id="KOf-Td-rvP"/>
                 <outlet property="blueButton" destination="44T-4O-48b" id="CzR-JH-52F"/>
                 <outlet property="greenButton" destination="6gO-fE-40L" id="8bh-3P-tw6"/>
+                <outlet property="imgView" destination="Wt0-Cs-xOf" id="Ybs-50-kMP"/>
                 <outlet property="redButton" destination="d7M-d9-Y3g" id="ymg-ci-VFN"/>
                 <outlet property="whiteButton" destination="X6y-WK-uRT" id="rdJ-zw-v1h"/>
                 <outlet property="yellowButton" destination="T41-bR-1qQ" id="oKa-Hw-HFu"/>
