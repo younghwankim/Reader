@@ -106,7 +106,7 @@ static CGPoint midpoint(CGPoint p0, CGPoint p1) {
 - (UIBezierPath*)createBezierPath
 {
     UIBezierPath* newPath = [UIBezierPath bezierPath];
-    newPath.lineWidth = 4.0;
+    newPath.lineWidth = 5.0;
     return newPath;
 }
 
