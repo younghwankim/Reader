@@ -146,7 +146,7 @@
     }else{
         if(self.inputTextDelegate){
             if(self.isLargeMode){
-                self.currentFont = [UIFont fontWithName:self.currentFontName size:(self.fontSize*2)];
+                self.currentFont = [UIFont fontWithName:self.currentFontName size:(self.fontSize*3)];
             }
             [self.inputTextDelegate saveInputText:self.textView.text font:self.currentFont color:self.currentColor];
         }
