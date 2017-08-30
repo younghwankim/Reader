@@ -812,9 +812,8 @@
                                                        handler:^(UIAlertAction * action) {
                                                            [alert dismissViewControllerAnimated:YES completion:nil];
                                                        }];
-        
-        [alert addAction:ok];
         [alert addAction:cancel];
+        [alert addAction:ok];
         
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.placeholder = [NSString stringWithFormat:@"%@_ann.pdf",[document.fileName stringByDeletingPathExtension]];
