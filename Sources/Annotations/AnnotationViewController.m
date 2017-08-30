@@ -372,11 +372,11 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     InputTextViewController *contentViewController = [[InputTextViewController alloc]initWithNibName:@"InputTextViewController" bundle:bundle];
     contentViewController.inputTextDelegate = self;
     if(isLargeMode) {
-        contentViewController.fontSize = 48;
+        contentViewController.fontSize = 30;
     }else{
-        contentViewController.fontSize = 24;
+        contentViewController.fontSize = 18;
     }
-    
+    contentViewController.isLargeMode = isLargeMode;
     contentViewController.preferredContentSize = CGSizeMake(429,342);
     
     CGFloat myScale = [self calculateScale];

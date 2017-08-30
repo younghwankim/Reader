@@ -23,4 +23,5 @@
 
 @property (nonatomic,strong) UIFont *currentFont;
 @property (nonatomic,strong) UIColor *currentColor;
+@property (nonatomic) BOOL isLargeMode;
 @end

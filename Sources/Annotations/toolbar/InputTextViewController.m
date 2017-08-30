@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *greenButton;
 @property (weak, nonatomic) IBOutlet UIButton *yellowButton;
 @property (weak, nonatomic) IBOutlet UIButton *redButton;
-
+@property (strong, nonatomic) NSString *currentFontName;
 @end
 
 @implementation InputTextViewController
@@ -76,6 +76,7 @@
             strFontName = @"HelveticaNeue";
         }
     }
+    self.currentFontName = strFontName;
     self.currentFont =  [UIFont fontWithName:strFontName size:self.fontSize];
     
     if(self.fontColor == 0){
@@ -143,8 +144,12 @@
         if(self.inputTextDelegate)
             [self.inputTextDelegate closeInputText];
     }else{
-        if(self.inputTextDelegate)
+        if(self.inputTextDelegate){
+            if(self.isLargeMode){
+                self.currentFont = [UIFont fontWithName:self.currentFontName size:(self.fontSize*2)];
+            }
             [self.inputTextDelegate saveInputText:self.textView.text font:self.currentFont color:self.currentColor];
+        }
     }
 }
 
