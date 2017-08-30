@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    fontArray = @[@12,@13,@14,@15,@16,@17,@18,@20,@24,@36,@48,@72];
+    fontArray = @[@12,@13,@14,@15,@16,@17,@18,@20,@24,@30,@36,@48,@60,@72,@96];
     
     self.textView.layer.borderColor = [UIColor clearColor].CGColor;
     

@@ -49,6 +49,8 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     
     SPUserResizableView *imageResizableView;
     BOOL isPopUpMode;
+    
+    BOOL isLargeMode;
 }
 
 @dynamic annotationType;
@@ -66,7 +68,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
         image = [[UIImageView alloc] initWithImage:nil];
         image.frame = CGRectMake(0,0,100,100); //so we don't error out
         currentPaths = [NSMutableArray array];
-        
+        isLargeMode = NO;
         annotationStore = [[AnnotationStore alloc] initWithPageCount:[readerDocument.pageCount intValue]];
     }
     return self;
@@ -187,6 +189,13 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
         
         contentView = view;
         pageView = [view pageView];
+        
+        if(pageView && pageView.frame.size.width > 1800) {
+            isLargeMode = YES;
+        }else{
+            isLargeMode = NO;
+        }
+        
         //Create a new one because the old one may be deallocated or have a deallocated parent
         //First, erase any contents though
         if (image.superview != nil) {
@@ -362,6 +371,11 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     InputTextViewController *contentViewController = [[InputTextViewController alloc]initWithNibName:@"InputTextViewController" bundle:bundle];
     contentViewController.inputTextDelegate = self;
+    if(isLargeMode) {
+        contentViewController.fontSize = 30;
+    }else{
+        contentViewController.fontSize = 18;
+    }
     
     contentViewController.preferredContentSize = CGSizeMake(429,342);
     
@@ -438,7 +452,7 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     CGPoint centerInVisualRect = CGPointMake(visibleRect.origin.x + visibleRect.size.width / 2.0, visibleRect.origin.y + visibleRect.size.height / 2.0);
     CGRect labelFrame = CGRectMake(centerInVisualRect.x - size.width / 2.0, centerInVisualRect.y - size.height / 2.0, size.width, size.height);
     textField.frame = labelFrame;
-    textField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    textField.layer.borderColor = [UIColor redColor].CGColor;
     textField.layer.borderWidth = 1.0;
     textField.hidden = NO;
 }
@@ -446,7 +460,6 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
 #pragma mark SignView
 - (void) showSignView {
     isPopUpMode = YES;
-
 }
 
 - (void) closeESign {
@@ -458,13 +471,20 @@ CGFloat const TEXT_FIELD_HEIGHT = 32;
     
     CGRect visibleRect = [contentView convertRect:contentView.bounds toView:pageView];
     
-    if(imgSign.size.width >300 || imgSign.size.height >300){
-        if(imgSign.size.width > imgSign.size.height) {
-            imgSign =[imgSign scaleImageToSize:CGSizeMake(300,(300 * imgSign.size.height / imgSign.size.width))];
-        } else {
-            imgSign =[imgSign scaleImageToSize:CGSizeMake((300 * imgSign.size.width/imgSign.size.height) ,300)];
-        }
-    }
+    
+    CGFloat ratio = pageView.frame.size.width / 4.0;
+    
+    
+//    if(imgSign.size.width >300 || imgSign.size.height >300){
+//        if(imgSign.size.width > imgSign.size.height) {
+//            imgSign =[imgSign scaleImageToSize:CGSizeMake(300,(300 * imgSign.size.height / imgSign.size.width))];
+//        } else {
+//            imgSign =[imgSign scaleImageToSize:CGSizeMake((300 * imgSign.size.width/imgSign.size.height) ,300)];
+//        }
+//    }
+    
+    imgSign =[imgSign scaleImageToSize:CGSizeMake(ratio, imgSign.size.height * ratio / imgSign.size.width)];
+    
     
     
     CGPoint centerInVisualRect = CGPointMake(visibleRect.origin.x + visibleRect.size.width / 2.0, visibleRect.origin.y + visibleRect.size.height / 2.0);
