@@ -12,6 +12,9 @@
 #import "UIImage+Trim.h"
 
 @interface ESignViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *blackButton;
+@property (weak, nonatomic) IBOutlet UIButton *blueButton;
+@property (weak, nonatomic) IBOutlet UIButton *redButton;
 
 @property (weak, nonatomic) IBOutlet NISignatureViewQuartzQuadratic *signatureView;
 @end
@@ -21,6 +24,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    UIImage *whiteImage = [UIImage imageNamed:@"wcheckmark" inBundle:bundle compatibleWithTraitCollection:nil];
+    [self.blackButton setImage:whiteImage forState:UIControlStateNormal];
+    [self.blueButton setImage:nil forState:UIControlStateNormal];
+    [self.redButton setImage:nil forState:UIControlStateNormal];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -36,16 +45,35 @@
 
 
 - (IBAction)blackClicked:(UIButton *)sender {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    UIImage *whiteImage = [UIImage imageNamed:@"wcheckmark" inBundle:bundle compatibleWithTraitCollection:nil];
+    [self.blackButton setImage:whiteImage forState:UIControlStateNormal];
+    [self.blueButton setImage:nil forState:UIControlStateNormal];
+    [self.redButton setImage:nil forState:UIControlStateNormal];
+    
+    
     [self.signatureView black];
     [self.signatureView setNeedsDisplay];
 }
 
 - (IBAction)redClicked:(UIButton *)sender {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    UIImage *whiteImage = [UIImage imageNamed:@"wcheckmark" inBundle:bundle compatibleWithTraitCollection:nil];
+    [self.redButton setImage:whiteImage forState:UIControlStateNormal];
+    [self.blackButton setImage:nil forState:UIControlStateNormal];
+    [self.blueButton setImage:nil forState:UIControlStateNormal];
+    
     [self.signatureView red];
     [self.signatureView setNeedsDisplay];
 }
 
 - (IBAction)blueClicked:(UIButton *)sender {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    UIImage *whiteImage = [UIImage imageNamed:@"wcheckmark" inBundle:bundle compatibleWithTraitCollection:nil];
+    [self.blueButton setImage:whiteImage forState:UIControlStateNormal];
+    [self.redButton setImage:nil forState:UIControlStateNormal];
+    [self.blackButton setImage:nil forState:UIControlStateNormal];
+    
     [self.signatureView blue];
     [self.signatureView setNeedsDisplay];
 }

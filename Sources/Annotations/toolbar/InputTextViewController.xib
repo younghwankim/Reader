@@ -23,6 +23,7 @@
                 <outlet property="greenButton" destination="F2y-Jg-9dW" id="DOq-sA-KMA"/>
                 <outlet property="italicButton" destination="9gC-Ig-GxD" id="PSf-Ze-eZL"/>
                 <outlet property="redButton" destination="39D-D3-vF2" id="FhJ-pF-qF2"/>
+                <outlet property="saveCloseButton" destination="bLr-xb-rde" id="oes-Vl-0em"/>
                 <outlet property="textView" destination="dfE-sI-N8X" id="X0W-sa-lLC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="YEX-BE-ukU"/>
                 <outlet property="whiteButton" destination="C58-Vi-9q4" id="hQe-Qj-V5H"/>
@@ -161,6 +162,21 @@
                         <action selector="cancelClicked:" destination="-1" eventType="touchUpInside" id="q70-6H-68f"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLr-xb-rde">
+                    <rect key="frame" x="403" y="1" width="26" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" image="ok_close.png">
+                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="saveClicked:" destination="-1" eventType="touchUpInside" id="XAu-jG-92i"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -170,6 +186,7 @@
     </objects>
     <resources>
         <image name="close.png" width="22" height="22"/>
+        <image name="ok_close.png" width="22" height="22"/>
         <image name="textinput.png" width="425" height="340"/>
     </resources>
 </document>

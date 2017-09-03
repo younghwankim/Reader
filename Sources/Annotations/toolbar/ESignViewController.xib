@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ESignViewController">
             <connections>
+                <outlet property="blackButton" destination="yoX-94-ZY1" id="gRt-xK-8cB"/>
+                <outlet property="blueButton" destination="bhh-Xg-y60" id="K1H-gt-8KX"/>
+                <outlet property="redButton" destination="GyF-1X-YU0" id="eNw-nn-Tlk"/>
                 <outlet property="signatureView" destination="mJB-qy-jtY" id="Dxb-eJ-LyS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -126,7 +129,7 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhh-Xg-y60" userLabel="BlueButton">
-                    <rect key="frame" x="152" y="348" width="36" height="36"/>
+                    <rect key="frame" x="152" y="348.66666666666669" width="36" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="kN0-Fz-bgR"/>
                         <constraint firstAttribute="height" constant="36" id="zRr-m2-Eyt"/>

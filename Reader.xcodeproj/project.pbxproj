@@ -53,9 +53,9 @@
 		192C4B7A1F49CBE500EDE677 /* bcheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 192C4B761F49CBE500EDE677 /* bcheckmark@2x.png */; };
 		192C4B831F49D61700EDE677 /* ColorToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 192C4B801F49D61700EDE677 /* ColorToolbar.xib */; };
 		192C4B841F49D61700EDE677 /* ColorToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C4B821F49D61700EDE677 /* ColorToolbar.m */; };
+		1930DA8D1F5CBA3C00746C0D /* ok_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 1930DA8B1F5CBA3C00746C0D /* ok_close.png */; };
+		1930DA8E1F5CBA3C00746C0D /* ok_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1930DA8C1F5CBA3C00746C0D /* ok_close@2x.png */; };
 		195C71181F47B63600A4D8D9 /* InputTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195C71171F47B63600A4D8D9 /* InputTextViewController.xib */; };
-		195C711B1F47B6AB00A4D8D9 /* textpad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 195C71191F47B6AB00A4D8D9 /* textpad@2x.png */; };
-		195C711C1F47B6AB00A4D8D9 /* textpad.png in Resources */ = {isa = PBXBuildFile; fileRef = 195C711A1F47B6AB00A4D8D9 /* textpad.png */; };
 		195C711F1F47B98800A4D8D9 /* InputTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C711E1F47B98800A4D8D9 /* InputTextViewController.m */; };
 		195C71251F47BE3100A4D8D9 /* UIView-JTViewToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71241F47BE3100A4D8D9 /* UIView-JTViewToImage.m */; };
 		195C713A1F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C71271F47C87400A4D8D9 /* KWEPopoverContainerViewProperties.m */; };
@@ -75,7 +75,6 @@
 		198024731F48E18800E6848C /* ESignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198024711F48E18800E6848C /* ESignViewController.xib */; };
 		198024771F49071900E6848C /* textinput.png in Resources */ = {isa = PBXBuildFile; fileRef = 198024751F49071900E6848C /* textinput.png */; };
 		198024781F49071900E6848C /* textinput@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 198024761F49071900E6848C /* textinput@2x.png */; };
-		198207121F46893A00D27253 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198207111F46893A00D27253 /* SignViewController.xib */; };
 		198207191F468A1C00D27253 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207171F468A1C00D27253 /* close.png */; };
 		1982071A1F468A1C00D27253 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 198207181F468A1C00D27253 /* close@2x.png */; };
 		1982071D1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m in Sources */ = {isa = PBXBuildFile; fileRef = 1982071B1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m */; };
@@ -182,9 +181,9 @@
 		192C4B801F49D61700EDE677 /* ColorToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorToolbar.xib; path = Sources/Annotations/toolbar/ColorToolbar.xib; sourceTree = "<group>"; };
 		192C4B811F49D61700EDE677 /* ColorToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorToolbar.h; path = Sources/Annotations/toolbar/ColorToolbar.h; sourceTree = "<group>"; };
 		192C4B821F49D61700EDE677 /* ColorToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorToolbar.m; path = Sources/Annotations/toolbar/ColorToolbar.m; sourceTree = "<group>"; };
+		1930DA8B1F5CBA3C00746C0D /* ok_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ok_close.png; path = Graphics/reader/ok_close.png; sourceTree = "<group>"; };
+		1930DA8C1F5CBA3C00746C0D /* ok_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ok_close@2x.png"; path = "Graphics/reader/ok_close@2x.png"; sourceTree = "<group>"; };
 		195C71171F47B63600A4D8D9 /* InputTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputTextViewController.xib; path = Sources/Annotations/toolbar/InputTextViewController.xib; sourceTree = "<group>"; };
-		195C71191F47B6AB00A4D8D9 /* textpad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textpad@2x.png"; path = "Graphics/reader/textpad@2x.png"; sourceTree = "<group>"; };
-		195C711A1F47B6AB00A4D8D9 /* textpad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = textpad.png; path = Graphics/reader/textpad.png; sourceTree = "<group>"; };
 		195C711D1F47B98800A4D8D9 /* InputTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputTextViewController.h; path = Sources/Annotations/toolbar/InputTextViewController.h; sourceTree = "<group>"; };
 		195C711E1F47B98800A4D8D9 /* InputTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputTextViewController.m; path = Sources/Annotations/toolbar/InputTextViewController.m; sourceTree = "<group>"; };
 		195C71231F47BE3100A4D8D9 /* UIView-JTViewToImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView-JTViewToImage.h"; path = "Sources/Annotations/toolbar/UIView-JTViewToImage.h"; sourceTree = "<group>"; };
@@ -218,7 +217,6 @@
 		198024711F48E18800E6848C /* ESignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ESignViewController.xib; path = Sources/Annotations/toolbar/ESignViewController.xib; sourceTree = "<group>"; };
 		198024751F49071900E6848C /* textinput.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = textinput.png; path = Graphics/reader/textinput.png; sourceTree = "<group>"; };
 		198024761F49071900E6848C /* textinput@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textinput@2x.png"; path = "Graphics/reader/textinput@2x.png"; sourceTree = "<group>"; };
-		198207111F46893A00D27253 /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignViewController.xib; path = Sources/Annotations/toolbar/SignViewController.xib; sourceTree = "<group>"; };
 		198207171F468A1C00D27253 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close.png; path = Graphics/reader/close.png; sourceTree = "<group>"; };
 		198207181F468A1C00D27253 /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close@2x.png"; path = "Graphics/reader/close@2x.png"; sourceTree = "<group>"; };
 		1982071B1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISignatureViewQuartzQuadratic.m; path = Sources/Annotations/toolbar/NISignatureViewQuartzQuadratic.m; sourceTree = "<group>"; };
@@ -389,7 +387,6 @@
 				198207201F468D4D00D27253 /* UIImage+Trim.m */,
 				1982071B1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.m */,
 				1982071C1F468A7F00D27253 /* NISignatureViewQuartzQuadratic.h */,
-				198207111F46893A00D27253 /* SignViewController.xib */,
 				1980246F1F48E18800E6848C /* ESignViewController.h */,
 				198024701F48E18800E6848C /* ESignViewController.m */,
 				198024711F48E18800E6848C /* ESignViewController.xib */,
@@ -492,6 +489,8 @@
 		45943FC417FDCA3E003CC77A /* Reader */ = {
 			isa = PBXGroup;
 			children = (
+				1930DA8B1F5CBA3C00746C0D /* ok_close.png */,
+				1930DA8C1F5CBA3C00746C0D /* ok_close@2x.png */,
 				19FB9B1F1F4A798100EC4493 /* italic_off.png */,
 				19FB9B201F4A798100EC4493 /* italic_on.png */,
 				19FB9B211F4A798100EC4493 /* italic_on@2x.png */,
@@ -508,8 +507,6 @@
 				192C4B6D1F49C0CA00EDE677 /* color@2x.png */,
 				198024751F49071900E6848C /* textinput.png */,
 				198024761F49071900E6848C /* textinput@2x.png */,
-				195C71191F47B6AB00A4D8D9 /* textpad@2x.png */,
-				195C711A1F47B6AB00A4D8D9 /* textpad.png */,
 				198207171F468A1C00D27253 /* close.png */,
 				198207181F468A1C00D27253 /* close@2x.png */,
 				196D4AED1F43CAD600697082 /* done.png */,
@@ -718,7 +715,6 @@
 				192720A01F43C87D00DBF2C0 /* Reader-Text@2x.png in Resources */,
 				192C4B6E1F49C0CA00EDE677 /* color.png in Resources */,
 				45AB72DC141FC039003524C3 /* Reader.pdf in Resources */,
-				195C711C1F47B6AB00A4D8D9 /* textpad.png in Resources */,
 				1927209B1F43C87D00DBF2C0 /* Reader-RedPen.png in Resources */,
 				192720841F43C87D00DBF2C0 /* Reader-Annotate.png in Resources */,
 				19FB9B291F4A798100EC4493 /* italic_on@2x.png in Resources */,
@@ -726,9 +722,9 @@
 				192720941F43C87D00DBF2C0 /* Reader-Mark-N@3x.png in Resources */,
 				192720831F43C87D00DBF2C0 /* undo@3x.png in Resources */,
 				1927207F1F43C87D00DBF2C0 /* cancel@2x.png in Resources */,
+				1930DA8D1F5CBA3C00746C0D /* ok_close.png in Resources */,
 				192C4B6F1F49C0CA00EDE677 /* color@2x.png in Resources */,
 				192720951F43C87D00DBF2C0 /* Reader-Mark-Y.png in Resources */,
-				198207121F46893A00D27253 /* SignViewController.xib in Resources */,
 				1927209F1F43C87D00DBF2C0 /* Reader-Text.png in Resources */,
 				192720871F43C87D00DBF2C0 /* Reader-Button-H@2x.png in Resources */,
 				196D4AF11F43CAD600697082 /* done@2x.png in Resources */,
@@ -749,6 +745,7 @@
 				196D4AF01F43CAD600697082 /* done.png in Resources */,
 				192720821F43C87D00DBF2C0 /* undo@2x.png in Resources */,
 				192720891F43C87D00DBF2C0 /* Reader-Button-N.png in Resources */,
+				1930DA8E1F5CBA3C00746C0D /* ok_close@2x.png in Resources */,
 				1927208D1F43C87D00DBF2C0 /* Reader-Email@2x.png in Resources */,
 				4544394A17FDD5E700781873 /* AppIcon-152.png in Resources */,
 				1927209A1F43C87D00DBF2C0 /* Reader-Print@3x.png in Resources */,
@@ -760,7 +757,6 @@
 				196D4AF21F43CAD600697082 /* done@3x.png in Resources */,
 				195C71181F47B63600A4D8D9 /* InputTextViewController.xib in Resources */,
 				1982071A1F468A1C00D27253 /* close@2x.png in Resources */,
-				195C711B1F47B6AB00A4D8D9 /* textpad@2x.png in Resources */,
 				198024771F49071900E6848C /* textinput.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

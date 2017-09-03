@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *yellowButton;
 @property (weak, nonatomic) IBOutlet UIButton *redButton;
 @property (strong, nonatomic) NSString *currentFontName;
+
+@property (weak, nonatomic) IBOutlet UIButton *saveCloseButton;
 @end
 
 @implementation InputTextViewController
@@ -47,6 +49,13 @@
         self.fontSize = 15;
     }
     [self updateStatusLabel];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        self.saveCloseButton.hidden = NO;
+    } else {
+        self.saveCloseButton.hidden = YES;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
