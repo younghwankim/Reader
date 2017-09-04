@@ -63,10 +63,10 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-	return [self initWithFrame:frame document:nil];
+	return [self initWithFrame:frame document:nil readOnly:NO];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame document:(ReaderDocument *)document
+- (instancetype)initWithFrame:(CGRect)frame document:(ReaderDocument *)document readOnly:(BOOL)readOnly
 {
 	assert(document != nil); // Must have a valid ReaderDocument
 
@@ -137,39 +137,38 @@
 		CGFloat rightButtonX = viewWidth; // Right-side buttons start X position
 
         //Export  or Save
-        
-        rightButtonX -= (iconButtonWidth + buttonSpacing); // Next position
-        
-        UIButton *exportButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        exportButton.frame = CGRectMake(rightButtonX, BUTTON_Y, iconButtonWidth, BUTTON_HEIGHT);
-        [exportButton setTitle:@"Save" forState:UIControlStateNormal];
-        [exportButton setTitleColor:[UIColor colorWithWhite:0.0f alpha:1.0f] forState:UIControlStateNormal];
-        [exportButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:1.0f] forState:UIControlStateHighlighted];
-        [exportButton addTarget:self action:@selector(exportButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [exportButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
-        [exportButton setBackgroundImage:buttonN forState:UIControlStateNormal];
-        exportButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        //exportButton.backgroundColor = [UIColor grayColor];
-        exportButton.exclusiveTouch = YES;
-        
-        [self addSubview:exportButton]; titleWidth -= (iconButtonWidth + buttonSpacing);
-        
-        //Annotation
-        rightButtonX -= (ANNOTATE_BUTTON_WIDTH + BUTTON_SPACE);
-        
-        UIButton *annotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        annotateButton.frame = CGRectMake(rightButtonX, BUTTON_Y, ANNOTATE_BUTTON_WIDTH, BUTTON_HEIGHT);
-        [annotateButton setImage:[UIImage imageNamed:@"Reader-Annotate" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-        [annotateButton addTarget:self action:@selector(annotateButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [annotateButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
-        [annotateButton setBackgroundImage:buttonN forState:UIControlStateNormal];
-        annotateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        annotateButton.exclusiveTouch = YES;
-        
-        [self addSubview:annotateButton]; titleWidth -= (ANNOTATE_BUTTON_WIDTH + BUTTON_SPACE);
-
-        
+        if(!readOnly) {
+            rightButtonX -= (iconButtonWidth + buttonSpacing); // Next position
+            
+            UIButton *exportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            exportButton.frame = CGRectMake(rightButtonX, BUTTON_Y, iconButtonWidth, BUTTON_HEIGHT);
+            [exportButton setTitle:@"Save" forState:UIControlStateNormal];
+            [exportButton setTitleColor:[UIColor colorWithWhite:0.0f alpha:1.0f] forState:UIControlStateNormal];
+            [exportButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:1.0f] forState:UIControlStateHighlighted];
+            [exportButton addTarget:self action:@selector(exportButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            [exportButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
+            [exportButton setBackgroundImage:buttonN forState:UIControlStateNormal];
+            exportButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+            //exportButton.backgroundColor = [UIColor grayColor];
+            exportButton.exclusiveTouch = YES;
+            
+            [self addSubview:exportButton]; titleWidth -= (iconButtonWidth + buttonSpacing);
+            
+            //Annotation
+            rightButtonX -= (ANNOTATE_BUTTON_WIDTH + BUTTON_SPACE);
+            
+            UIButton *annotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            annotateButton.frame = CGRectMake(rightButtonX, BUTTON_Y, ANNOTATE_BUTTON_WIDTH, BUTTON_HEIGHT);
+            [annotateButton setImage:[UIImage imageNamed:@"Reader-Annotate" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+            [annotateButton addTarget:self action:@selector(annotateButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            [annotateButton setBackgroundImage:buttonH forState:UIControlStateHighlighted];
+            [annotateButton setBackgroundImage:buttonN forState:UIControlStateNormal];
+            annotateButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+            annotateButton.exclusiveTouch = YES;
+            
+            [self addSubview:annotateButton]; titleWidth -= (ANNOTATE_BUTTON_WIDTH + BUTTON_SPACE);
+        }
         
         
 #if (READER_BOOKMARKS == TRUE) // Option
@@ -197,7 +196,7 @@
 
 
         
-		if (largeDevice == YES) // Show document filename in toolbar
+		if ((largeDevice == YES) || readOnly) // Show document filename in toolbar
 		{
 			CGRect titleRect = CGRectMake(titleX, BUTTON_Y, titleWidth, TITLE_HEIGHT);
 

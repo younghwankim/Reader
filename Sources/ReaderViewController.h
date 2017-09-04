@@ -44,5 +44,5 @@
 @property AnnotationViewController *annotationController;
 
 - (instancetype)initWithReaderDocument:(ReaderDocument *)object;
-
+- (instancetype)initWithReaderDocument:(ReaderDocument *)object readOnly:(BOOL)readOnly;
 @end

@@ -72,6 +72,8 @@
     
     ReaderAnnotateToolbar *annotateToolbar;
     ColorToolbar *colorToolbar;
+    
+    BOOL isReadOnly;
 }
 
 #pragma mark - Constants
@@ -323,8 +325,14 @@
 			self = nil;
 		}
 	}
-
+    isReadOnly = NO;
 	return self;
+}
+
+- (instancetype)initWithReaderDocument:(ReaderDocument *)object readOnly:(BOOL)readOnly {
+    self = [self initWithReaderDocument:object];
+    isReadOnly = readOnly;
+    return self;
 }
 
 - (void)dealloc
@@ -367,7 +375,7 @@
 	[self.view addSubview:theScrollView];
 
 	CGRect toolbarRect = viewRect; toolbarRect.size.height = TOOLBAR_HEIGHT;
-	mainToolbar = [[ReaderMainToolbar alloc] initWithFrame:toolbarRect document:document]; // ReaderMainToolbar
+    mainToolbar = [[ReaderMainToolbar alloc] initWithFrame:toolbarRect document:document readOnly:isReadOnly]; // ReaderMainToolbar
 	mainToolbar.delegate = self; // ReaderMainToolbarDelegate
 	[self.view addSubview:mainToolbar];
     
