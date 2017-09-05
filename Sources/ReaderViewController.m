@@ -785,7 +785,7 @@
         //save annotated document
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"File Name"
-                                      message:@"Please, input file name"
+                                      message:@"New file name:"
                                       preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
