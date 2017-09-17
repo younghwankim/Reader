@@ -46,6 +46,8 @@
 
 	CGFloat _pageOffsetX;
 	CGFloat _pageOffsetY;
+    
+    CGRect _bounds;
 }
 
 #pragma mark - ReaderContentPage class methods
@@ -501,10 +503,10 @@
 
     if (view != nil) {
         [self buildAnnotationLinksList];
-        NSLog(@"Rending Page %ld", page);
         _annotations = [annotations annotationsForPage:(int)page];
 
     }
+    _bounds = self.bounds;
 	return view;
 }
 
@@ -537,33 +539,32 @@
 
 - (void)drawLayer:(CATiledLayer *)layer inContext:(CGContextRef)context
 {
-	ReaderContentPage *readerContentPage = self; // Retain self
-
-	CGContextSetRGBFillColor(context, 1.0f, 1.0f, 1.0f, 1.0f); // White
-
-	CGContextFillRect(context, CGContextGetClipBoundingBox(context)); // Fill
-
-	//NSLog(@"%s %@", __FUNCTION__, NSStringFromCGRect(CGContextGetClipBoundingBox(context)));
-
-	CGContextTranslateCTM(context, 0.0f, self.bounds.size.height); CGContextScaleCTM(context, 1.0f, -1.0f);
-
-	CGContextConcatCTM(context, CGPDFPageGetDrawingTransform(_PDFPageRef, kCGPDFCropBox, self.bounds, 0, true));
-
-	//CGContextSetRenderingIntent(context, kCGRenderingIntentDefault); CGContextSetInterpolationQuality(context, kCGInterpolationDefault);
-
-	CGContextDrawPDFPage(context, _PDFPageRef); // Render the PDF page into the context
-
+    ReaderContentPage *readerContentPage = self; // Retain self
+    
+    CGContextSetRGBFillColor(context, 1.0f, 1.0f, 1.0f, 1.0f); // White
+    
+    CGContextFillRect(context, CGContextGetClipBoundingBox(context)); // Fill
+    
+    //NSLog(@"%s %@", __FUNCTION__, NSStringFromCGRect(CGContextGetClipBoundingBox(context)));
+    
+    CGContextTranslateCTM(context, 0.0f, _bounds.size.height);
+    CGContextScaleCTM(context, 1.0f, -1.0f);
+    
+    CGContextConcatCTM(context, CGPDFPageGetDrawingTransform(_PDFPageRef, kCGPDFCropBox, _bounds, 0, true));
+    
+    //CGContextSetRenderingIntent(context, kCGRenderingIntentDefault); CGContextSetInterpolationQuality(context, kCGInterpolationDefault);
+    
+    CGContextDrawPDFPage(context, _PDFPageRef); // Render the PDF page into the context
+    
     if (_annotations) {
-        NSLog(@"Annotations: %ld", [_annotations count]);
         //Flip back right-side up
         CGContextScaleCTM(context, 1.0f, -1.0f);
-        CGContextTranslateCTM(context, 0.0f, -self.bounds.size.height);
+        CGContextTranslateCTM(context, 0.0f, - _bounds.size.height);
         for (Annotation *anno in _annotations) {
             [anno drawInContext:context];
         }
     }
-    
-	if (readerContentPage != nil) readerContentPage = nil; // Release self
+    if (readerContentPage != nil) readerContentPage = nil; // Release self
 }
 
 @end

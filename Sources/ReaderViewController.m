@@ -374,11 +374,16 @@
 	theScrollView.backgroundColor = [UIColor clearColor]; theScrollView.delegate = self;
 	[self.view addSubview:theScrollView];
 
-	CGRect toolbarRect = viewRect; toolbarRect.size.height = TOOLBAR_HEIGHT;
+    CGRect toolbarRect = viewRect; toolbarRect.size.height = TOOLBAR_HEIGHT;
+    if((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && [[UIScreen mainScreen] bounds].size.height > 736.0) {
+        toolbarRect.origin.y = 30;
+        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0,0,toolbarRect.size.width,30)];
+        backView.backgroundColor = [UIColor colorWithWhite:0.94f alpha:0.94f];
+        [self.view addSubview:backView];
+    }
     mainToolbar = [[ReaderMainToolbar alloc] initWithFrame:toolbarRect document:document readOnly:isReadOnly]; // ReaderMainToolbar
 	mainToolbar.delegate = self; // ReaderMainToolbarDelegate
 	[self.view addSubview:mainToolbar];
-    
     
     annotateToolbar = [[ReaderAnnotateToolbar alloc] initWithFrame:toolbarRect]; // At top for annotating
     
