@@ -40,6 +40,7 @@
 
 @interface ReaderViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate,
 									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate, ReaderAnnotateToolbarDelegate, ColorToolbarDelegate, ESignViewDelegate>
+@property (nonatomic) BOOL showAnnotation;
 @end
 
 @implementation ReaderViewController
@@ -74,8 +75,6 @@
     ColorToolbar *colorToolbar;
     
     BOOL isReadOnly;
-    
-    BOOL showAnnotation;
 }
 
 #pragma mark - Constants
@@ -339,7 +338,7 @@
 
 - (instancetype)initWithReaderDocument:(ReaderDocument *)object showAnnotation:(BOOL)showAnnotation{
     self = [self initWithReaderDocument:object];
-    showAnnotation = showAnnotation;
+    self.showAnnotation = showAnnotation;
     return self;
 }
 
@@ -469,7 +468,7 @@
 
 #endif // end of READER_DISABLE_IDLE Option
     
-    if(showAnnotation) {
+    if(self.showAnnotation) {
         [self tappedInToolbar:mainToolbar annotateButton:nil];
     }
     
