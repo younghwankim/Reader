@@ -470,10 +470,8 @@
     
     if(self.showAnnotation) {
         [self tappedInToolbar:mainToolbar annotateButton:nil];
+        self.showAnnotation = NO;
     }
-    
-    //- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar annotateButton:(UIButton *)button
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
