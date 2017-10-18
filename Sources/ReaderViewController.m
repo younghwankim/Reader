@@ -74,6 +74,8 @@
     ColorToolbar *colorToolbar;
     
     BOOL isReadOnly;
+    
+    BOOL showAnnotation;
 }
 
 #pragma mark - Constants
@@ -335,6 +337,12 @@
     return self;
 }
 
+- (instancetype)initWithReaderDocument:(ReaderDocument *)object showAnnotation:(BOOL)showAnnotation{
+    self = [self initWithReaderDocument:object];
+    showAnnotation = showAnnotation;
+    return self;
+}
+
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -460,6 +468,13 @@
 	[UIApplication sharedApplication].idleTimerDisabled = YES;
 
 #endif // end of READER_DISABLE_IDLE Option
+    
+    if(showAnnotation) {
+        [self tappedInToolbar:mainToolbar annotateButton:nil];
+    }
+    
+    //- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar annotateButton:(UIButton *)button
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

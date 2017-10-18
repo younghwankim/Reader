@@ -45,4 +45,5 @@
 
 - (instancetype)initWithReaderDocument:(ReaderDocument *)object;
 - (instancetype)initWithReaderDocument:(ReaderDocument *)object readOnly:(BOOL)readOnly;
+- (instancetype)initWithReaderDocument:(ReaderDocument *)object showAnnotation:(BOOL)showAnnotation;
 @end
