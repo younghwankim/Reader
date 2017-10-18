@@ -336,9 +336,9 @@
     return self;
 }
 
-- (instancetype)initWithReaderDocument:(ReaderDocument *)object showAnnotation:(BOOL)showAnnotation{
+- (instancetype)initWithReaderDocument:(ReaderDocument *)object showAnnotation:(BOOL)bShow{
     self = [self initWithReaderDocument:object];
-    self.showAnnotation = showAnnotation;
+    self.showAnnotation = bShow;
     return self;
 }
 
